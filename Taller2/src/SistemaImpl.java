@@ -1,2 +1,2 @@
-public class SistemaImpl {
+public class SistemaImpl implements Sistema {
 }

@@ -26,6 +26,9 @@ public interface Sistema {
     public String[] empleadoMenorSueldo(int mayor);
     public void Estadisticas();
     public void escribirArchivos();
+
+    boolean rutValido(String rut);
+
     boolean cargarDatos() throws IOException, ParseException;
 
     public void Salir();

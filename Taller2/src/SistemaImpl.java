@@ -247,7 +247,72 @@ public class SistemaImpl implements Sistema {
     public void escribirArchivos() {
 
     }
+    @Override
+    public boolean rutValido(String rut) {
+        try {
+            int rutAux = Integer.parseInt(rut.substring(0, rut.length() - 1));
+            char dv = rut.charAt(rut.length() - 1);
+            int m = 0, s = 1;
+            for (; rutAux != 0; rutAux /= 10) {
+                s = (s + rutAux % 10 * (9 - m++ % 6)) % 11;
+            }
+            char dvCalculado = (char) (s != 0 ? s + 47 : 75);
 
+            return dvCalculado == dv;
+
+        } catch (NumberFormatException excepcion) {
+            return false;
+        }
+    }
+
+    /**
+     * Verificador del formato del rut
+     * Comprueba si el rut ingresado tiene el formato correcto
+     * Ejemplo: 12345678-9
+     *
+     * @param rut rut a verificar
+     * @return true si el rut tiene el formato correcto, false si no lo es
+     */
+
+    private boolean rutFormato(String rut) {
+        if (rut.length() == 10 || rut.length() == 12) {
+            if (rut.length() == 10) {
+                if (rut.charAt(8) == '-') {
+                    if (Character.isDigit(rut.charAt(0)) && Character.isDigit(rut.charAt(1)) && Character.isDigit(rut.charAt(2)) && Character.isDigit(rut.charAt(3)) && Character.isDigit(rut.charAt(4)) && Character.isDigit(rut.charAt(5)) && Character.isDigit(rut.charAt(6)) && Character.isDigit(rut.charAt(7)) && Character.isDigit(rut.charAt(9))) {
+                        return true;
+                    } else {
+                        StdOut.println("Ingrese un rut válido");
+                        return false;
+                    }
+                } else {
+                    StdOut.println("Ingrese un rut válido");
+                    return false;
+                }
+            } else {
+                if (rut.charAt(2) == '.' && rut.charAt(6) == '.' && rut.charAt(10) == '-') {
+                    if (Character.isDigit(rut.charAt(0)) && Character.isDigit(rut.charAt(1)) && Character.isDigit(rut.charAt(3)) && Character.isDigit(rut.charAt(4)) && Character.isDigit(rut.charAt(5)) && Character.isDigit(rut.charAt(7)) && Character.isDigit(rut.charAt(8)) && Character.isDigit(rut.charAt(9)) && Character.isDigit(rut.charAt(11))) {
+                        return true;
+                    } else {
+                        StdOut.println("Ingrese un rut válido");
+                        return false;
+                    }
+                } else {
+                    StdOut.println("Ingrese un rut válido");
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    private String rutFormateado(String rut) {
+        String rutFormateado = "";
+        if (rut.length() == 8) {
+            rutFormateado = rut.substring(0, 1) + "." + rut.substring(1, 4) + "." + rut.substring(4, 7) + "-" + rut.substring(7, 8);
+        } else {
+            rutFormateado = rut.substring(0, 2) + "." + rut.substring(2, 5) + "." + rut.substring(5, 8) + "-" + rut.substring(8, 9);
+        }
+        return rutFormateado;
+    }
     private boolean idFormato(String ID)
     {
         if (ID.length() == 7)
@@ -307,7 +372,7 @@ public class SistemaImpl implements Sistema {
                 int bonoProductividad = regEnt.getInt();
 
                 // Considerar si cambiamos el creado de empleados al nuevo formato del documento de texto
-                //Empleado empleado = new Empleado(nombre, apellido,rut, diaDeNacimiento, salario, fechaIngreso, bonoProductividad)
+                //Empleado empleado = new Empleado(nombre, apellido,rut, diaDeNacimiento, salario, fechaIngreso, bonoProductividad, ID)
                 //listaTrabajadores.agregarTrabajadores(empleado);
 
 

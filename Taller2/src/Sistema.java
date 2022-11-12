@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.text.ParseException;
 
 public interface Sistema {
      void iniciar() throws Exception;
@@ -25,7 +26,7 @@ public interface Sistema {
     public String[] empleadoMenorSueldo(int mayor);
     public void Estadisticas();
     public void escribirArchivos();
-    boolean cargarDatos() throws IOException;
+    boolean cargarDatos() throws IOException, ParseException;
 
     public void Salir();
 

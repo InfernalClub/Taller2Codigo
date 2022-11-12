@@ -1,8 +1,13 @@
 import ucn.ArchivoEntrada;
+import ucn.Registro;
 import ucn.StdIn;
 import ucn.StdOut;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class SistemaImpl implements Sistema {
     /**
@@ -95,18 +100,17 @@ public class SistemaImpl implements Sistema {
                     StdOut.println("Ingrese una opción válida.");
                     menuPrincipal();
             }
-        } catch (Exception e) {
-            StdOut.println("Ingrese una opción válida.");
-            menuPrincipal();
         }
+
+        catch (Exception e)
+            {
+                StdOut.println("Ingrese una opción válida.");
+                menuPrincipal();
+            }
     }
 
-    private void verEstadisticas()
-    {
 
-    }
-
-    private void guardarDatos()
+    public void guardarDatos() throws IOException
     {
 
     }
@@ -264,9 +268,51 @@ public class SistemaImpl implements Sistema {
 
 
 
-    public boolean cargarDatos() throws IOException {
+    public boolean cargarDatos() throws IOException, ParseException {
         ArchivoEntrada archivo = new ArchivoEntrada("datos.txt");
+        while(!archivo.isEndFile())
+        {
+            Registro regEnt = archivo.getRegistro();
+            String ID = regEnt.getString();
+            String nombredepa = regEnt.getString();
+            int bonoDepa = regEnt.getInt();
+            String rutjefe = regEnt.getString();
+            int cantEmpleados = regEnt.getInt();
+            //Departamento departamento = new Departamento(ID,nombredepa,bonoDepa,rutjefe,cantEmpleados);
+            //listaDepartamento.agregarDepartamento(depatamento);
 
+            for (int i = 1; i <= cantEmpleados; i++)
+            {
+
+                String nombre = regEnt.getString();
+                String apellido = regEnt.getString();
+                String rut = regEnt.getString();
+                if (rut.contains(".") || rut.contains("-")) {
+                    rut = rut.replace(".", "");
+                    rut = rut.replace("-", "");
+                }
+                String fecha = regEnt.getString();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                Date date = sdf.parse(fecha);
+                Calendar diaDeNacimiento = Calendar.getInstance();
+                diaDeNacimiento.setTime(date);
+
+                int salario = regEnt.getInt();
+
+                String fecha2 = regEnt.getString();
+                Date date2 = sdf.parse(fecha2);
+                Calendar fechaIngreso = Calendar.getInstance();
+                fechaIngreso.setTime(date2);
+
+                int bonoProductividad = regEnt.getInt();
+
+                // Considerar si cambiamos el creado de empleados al nuevo formato del documento de texto
+                //Empleado empleado = new Empleado(nombre, apellido,rut, diaDeNacimiento, salario, fechaIngreso, bonoProductividad)
+                //listaTrabajadores.agregarTrabajadores(empleado);
+
+
+            }
+        }
         archivo.close();
         return true;
     }

@@ -1,17 +1,22 @@
+import java.io.IOException;
+
 public interface Sistema {
-    public void iniciar();
-    public void menuPrincipal();
-    public void menuEmpleados();
-    public void menuDepartamentos();
-    public void verEmpleados();
-    public void verDepartamentos();
-    public boolean IngresarEmpleado();
-    public boolean IngresarDepartamento();
-    public void departamentoSegunJefe();
+     void iniciar() throws Exception;
+     void menuPrincipal();
+     void menuEmpleados();
+     void menuDepartamentos();
+     void verEmpleados();
+     void verDepartamentos();
+    boolean IngresarEmpleado();
+    boolean IngresarDepartamento();
+    void departamentoSegunJefe();
     public String[] departamentoMasEmpleados();
     public String[] departamentoMenosEmpleados();
     public String[] jefeMasDepartamentos(int cantDepartamentos);
-    public String[] empleadosSegunDepartamento();
+
+
+    public String[] empleadosSegunDepartamento(Departamento departamento);
+
     public String[] empleadosSegunRangoDeInicio(String rango);
     public String[] empleadosSegunJefatura();
     public String[] empleadosSegunRangoDeSueldo(int sueldo);
@@ -20,6 +25,8 @@ public interface Sistema {
     public String[] empleadoMenorSueldo(int mayor);
     public void Estadisticas();
     public void escribirArchivos();
+    boolean cargarDatos() throws IOException;
+
     public void Salir();
 
 }

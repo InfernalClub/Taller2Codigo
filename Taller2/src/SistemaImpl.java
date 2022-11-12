@@ -1,5 +1,8 @@
+import ucn.ArchivoEntrada;
 import ucn.StdIn;
 import ucn.StdOut;
+
+import java.io.IOException;
 
 public class SistemaImpl implements Sistema {
     /**
@@ -18,8 +21,9 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
-    public void iniciar() {
-        if (!cargarClientes() || !cargarVehiculos() || !cargarContratos()) {
+    public void iniciar() throws Exception
+    {
+        if (!cargarDatos()) {
             StdOut.println("No se pudo iniciar el programa");
             return;
         }
@@ -39,6 +43,7 @@ public class SistemaImpl implements Sistema {
         StdOut.println("[6] Salir");
         StdOut.println("");
         StdOut.println("***************************");
+
         try {
             String opaux = StdIn.readLine();
             int opcion;
@@ -48,39 +53,62 @@ public class SistemaImpl implements Sistema {
                 case 1:
                     verEmpleados();
                     break;
+
                 case 2:
                     verDepartamentos();
                     break;
+
                 case 3:
-                    if (IngresarEmpleado()) {
-                        IngresarEmpleado();
-                    } else {
-                        menuPrincipal();
-                    }
+                    if (IngresarEmpleado())
+                        {
+                            IngresarEmpleado();
+                        }
+                        else
+                        {
+                            menuPrincipal();
+                        }
                     break;
+
                 case 4:
-                    if(IngresarDepartamento()){
+                    if(IngresarDepartamento())
+                    {
                         IngresarDepartamento();
-                    }else {
+                    }
+                    else
+                    {
                         menuPrincipal();
                     }
                     break;
+
                 case 5:
-                    if (Esta)
+                    Estadisticas();
+                    break;
+
                 case 6:
                     guardarDatos();
                     StdOut.println("Se cierra el programa");
                     StdOut.println("Gracias por utilizar nuestros servicios");
                     System.exit(0);
                     break;
+
                 default:
                     StdOut.println("Ingrese una opción válida.");
                     menuPrincipal();
             }
         } catch (Exception e) {
             StdOut.println("Ingrese una opción válida.");
-            menu();
+            menuPrincipal();
         }
+    }
+
+    private void verEstadisticas()
+    {
+
+    }
+
+    private void guardarDatos()
+    {
+
     }
 
     @Override
@@ -110,7 +138,20 @@ public class SistemaImpl implements Sistema {
         StdOut.println("");
         StdOut.println("***************************");
     }
-
+    @Override
+    public void Estadisticas()
+    {
+        StdOut.println("***************************");
+        StdOut.println("Estadisticas");
+        StdOut.println("");
+        StdOut.println("[1] Empleado con Mayor Sueldo");
+        StdOut.println("[1] Empleado con Menor Sueldo");
+        StdOut.println("[1] Departamento con mas empleados");
+        StdOut.println("[1] Departamento con menos empleados");
+        StdOut.println("[1] Jefes con mas departamentos");
+        StdOut.println("");
+        StdOut.println("***************************");
+    }
     @Override
     public void verEmpleados() {
 
@@ -151,10 +192,6 @@ public class SistemaImpl implements Sistema {
         return new String[0];
     }
 
-    @Override
-    public String[] empleadosSegunDepartamento() {
-        return new String[0];
-    }
 
     @Override
     public String[] empleadosSegunDepartamento(Departamento departamento) {
@@ -191,19 +228,7 @@ public class SistemaImpl implements Sistema {
         return new String[0];
     }
 
-    @Override
-    public void Estadisticas() {
-        StdOut.println("***************************");
-        StdOut.println("Estadisticas");
-        StdOut.println("");
-        StdOut.println("[1] Empleado con Mayor Sueldo");
-        StdOut.println("[1] Empleado con Menor Sueldo");
-        StdOut.println("[1] Departamento con mas empleados");
-        StdOut.println("[1] Departamento con menos empleados");
-        StdOut.println("[1] Jefes con mas departamentos");
-        StdOut.println("");
-        StdOut.println("***************************");
-    }
+
 
     private boolean isNumeric(String str) {
         try {
@@ -219,6 +244,32 @@ public class SistemaImpl implements Sistema {
 
     }
 
+    private boolean idFormato(String ID)
+    {
+        if (ID.length() == 7)
+        {
+            if(Character.isAlphabetic(ID.charAt(0)) && Character.isAlphabetic(ID.charAt(1)) && Character.isAlphabetic(ID.charAt(2)) && ID.charAt(3) =='-' && Character.isDigit(ID.charAt(4)) && Character.isDigit(ID.charAt(5)) && Character.isDigit(ID.charAt(6)))
+            {
+                return true;
+            }
+            else
+            {
+               StdOut.println("Ingrese un ID valido");
+               return false;
+            }
+
+        }
+    return true;
+    }
+
+
+
+    public boolean cargarDatos() throws IOException {
+        ArchivoEntrada archivo = new ArchivoEntrada("datos.txt");
+
+        archivo.close();
+        return true;
+    }
     @Override
     public void Salir() {
 

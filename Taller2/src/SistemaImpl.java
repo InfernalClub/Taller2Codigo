@@ -167,8 +167,33 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
-    public boolean IngresarEmpleado() {
-        return false;
+    public boolean IngresarEmpleado()
+    {
+        StdOut.println ("Ingrese el rut del empleado: ");
+        String rut = StdIn.readLine();
+
+
+        StdOut.println ("Ingrese el nombre del empleado: ");
+        String nombre = StdIn.readLine();
+
+        StdOut.println ("Ingrese la fecha de nacimiento: ");
+        String fecha = StdIn.readLine();
+
+
+        StdOut.println ("Ingrese el salario del empreado: ");
+        int salario = Integer.parseInt(StdIn.readLine());
+
+
+
+
+
+
+
+
+
+
+
+        return true;
     }
 
     @Override
@@ -274,29 +299,46 @@ public class SistemaImpl implements Sistema {
      * @return true si el rut tiene el formato correcto, false si no lo es
      */
 
-    private boolean rutFormato(String rut) {
-        if (rut.length() == 10 || rut.length() == 12) {
-            if (rut.length() == 10) {
-                if (rut.charAt(8) == '-') {
-                    if (Character.isDigit(rut.charAt(0)) && Character.isDigit(rut.charAt(1)) && Character.isDigit(rut.charAt(2)) && Character.isDigit(rut.charAt(3)) && Character.isDigit(rut.charAt(4)) && Character.isDigit(rut.charAt(5)) && Character.isDigit(rut.charAt(6)) && Character.isDigit(rut.charAt(7)) && Character.isDigit(rut.charAt(9))) {
+    private boolean rutFormato(String rut)
+    {
+        if (rut.length() == 10 || rut.length() == 12)
+        {
+            if (rut.length() == 10)
+            {
+                if (rut.charAt(8) == '-')
+                {
+                    if (Character.isDigit(rut.charAt(0)) && Character.isDigit(rut.charAt(1)) && Character.isDigit(rut.charAt(2)) && Character.isDigit(rut.charAt(3)) && Character.isDigit(rut.charAt(4)) && Character.isDigit(rut.charAt(5)) && Character.isDigit(rut.charAt(6)) && Character.isDigit(rut.charAt(7)) && Character.isDigit(rut.charAt(9)))
+                    {
                         return true;
-                    } else {
+                    }
+                    else
+                    {
                         StdOut.println("Ingrese un rut válido");
                         return false;
                     }
-                } else {
+                }
+                else
+                {
                     StdOut.println("Ingrese un rut válido");
                     return false;
                 }
-            } else {
-                if (rut.charAt(2) == '.' && rut.charAt(6) == '.' && rut.charAt(10) == '-') {
-                    if (Character.isDigit(rut.charAt(0)) && Character.isDigit(rut.charAt(1)) && Character.isDigit(rut.charAt(3)) && Character.isDigit(rut.charAt(4)) && Character.isDigit(rut.charAt(5)) && Character.isDigit(rut.charAt(7)) && Character.isDigit(rut.charAt(8)) && Character.isDigit(rut.charAt(9)) && Character.isDigit(rut.charAt(11))) {
+            }
+            else
+            {
+                if (rut.charAt(2) == '.' && rut.charAt(6) == '.' && rut.charAt(10) == '-')
+                {
+                    if (Character.isDigit(rut.charAt(0)) && Character.isDigit(rut.charAt(1)) && Character.isDigit(rut.charAt(3)) && Character.isDigit(rut.charAt(4)) && Character.isDigit(rut.charAt(5)) && Character.isDigit(rut.charAt(7)) && Character.isDigit(rut.charAt(8)) && Character.isDigit(rut.charAt(9)) && Character.isDigit(rut.charAt(11)))
+                    {
                         return true;
-                    } else {
+                    }
+                    else
+                    {
                         StdOut.println("Ingrese un rut válido");
                         return false;
                     }
-                } else {
+                }
+                else
+                {
                     StdOut.println("Ingrese un rut válido");
                     return false;
                 }
@@ -304,11 +346,15 @@ public class SistemaImpl implements Sistema {
         }
         return true;
     }
-    private String rutFormateado(String rut) {
+    private String rutFormateado(String rut)
+    {
         String rutFormateado = "";
-        if (rut.length() == 8) {
+        if (rut.length() == 8)
+        {
             rutFormateado = rut.substring(0, 1) + "." + rut.substring(1, 4) + "." + rut.substring(4, 7) + "-" + rut.substring(7, 8);
-        } else {
+        }
+        else
+        {
             rutFormateado = rut.substring(0, 2) + "." + rut.substring(2, 5) + "." + rut.substring(5, 8) + "-" + rut.substring(8, 9);
         }
         return rutFormateado;
@@ -328,7 +374,7 @@ public class SistemaImpl implements Sistema {
             }
 
         }
-    return true;
+        return true;
     }
 
 

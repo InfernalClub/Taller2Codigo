@@ -9,6 +9,8 @@ import ucn.StdOut;
 public class Main
 {
     public static void main(String[] args) {
-        SistemaImpl sist = new SistemaImpl();
+        SistemaImpl sist = new SistemaImpl(1000);
+
+             sist.menuPrincipal();
     }
 }

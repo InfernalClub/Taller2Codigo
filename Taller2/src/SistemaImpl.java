@@ -1,11 +1,8 @@
 public class SistemaImpl implements Sistema {
-    ListaDepartamento listaDepartamento;
-    ListaTrabajadores listaTrabajadores;
-
 
     @Override
     public void verEmpleados() {
-        
+
     }
 
     @Override

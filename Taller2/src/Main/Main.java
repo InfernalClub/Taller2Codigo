@@ -1,3 +1,5 @@
+package Main;
+
 import ucn.ArchivoEntrada;
 import ucn.Registro;
 import ucn.StdIn;

@@ -25,6 +25,12 @@ public class SistemaImpl implements Sistema {
      */
     private static ListaDepartamento listaDepartamento;
 
+    private static Empleado empleadoActual;
+
+    private static Jefe jefeActual;
+
+    private static Departamento departamento;
+
 
     public SistemaImpl(int maximo) {
         listaTrabajadores = new ListaTrabajadores (maximo);
@@ -126,7 +132,7 @@ public class SistemaImpl implements Sistema {
         StdOut.println("***************************");
         StdOut.println("Menu Empleados");
         StdOut.println("");
-        StdOut.println("[1] Empleados Segun Clases.Departamento");
+        StdOut.println("[1] Empleados Segun Departamento");
         StdOut.println("[2] Empleados Segun Rango De Inicio");
         StdOut.println("[3] Empleados Segun Jefatura");
         StdOut.println("[4] Empleados Segun Rango De Sueldo");
@@ -142,7 +148,7 @@ public class SistemaImpl implements Sistema {
         StdOut.println("Menu Departamentos");
         StdOut.println("");
         StdOut.println("[1] Todos Los Departamentos");
-        StdOut.println("[2] Departamentos Segun Clases.Jefe");
+        StdOut.println("[2] Departamentos Segun Jefe");
         StdOut.println("[3] Departamentos Segun Rango De Bonos");
         StdOut.println("[4] Volver Al Menu Anterior");
         StdOut.println("");
@@ -155,45 +161,63 @@ public class SistemaImpl implements Sistema {
         StdOut.println("Estadisticas");
         StdOut.println("");
         StdOut.println("[1] Clases.Empleado con Mayor Sueldo");
-        StdOut.println("[1] Clases.Empleado con Menor Sueldo");
-        StdOut.println("[1] Clases.Departamento con mas empleados");
-        StdOut.println("[1] Clases.Departamento con menos empleados");
-        StdOut.println("[1] Jefes con mas departamentos");
+        StdOut.println("[2] Clases.Empleado con Menor Sueldo");
+        StdOut.println("[3] Clases.Departamento con mas empleados");
+        StdOut.println("[4] Clases.Departamento con menos empleados");
+        StdOut.println("[5] Jefes con mas departamentos");
         StdOut.println("");
         StdOut.println("***************************");
     }
     @Override
     public void verEmpleados() {
+        StdOut.println("Datos del empleado");
+        StdOut.println("===========================");
+        StdOut.println("Nombre y apellido: " + empleadoActual.getNombre() + " " + empleadoActual.getApellido());
+        StdOut.println("Rut: " + empleadoActual.getRut());
+        StdOut.println("Edad: " + empleadoActual.getfechaNacimiento());
+        StdOut.println("Fecha de Inicio: " + empleadoActual.getfechaInicio());
+        StdOut.println("Nombre y apellido del jefe: " + jefeActual.getNombre()+" "+jefeActual.getApellido());
+        StdOut.println("Clases.Departamento del empleado: " + departamento.getNombre());
 
     }
 
     @Override
     public void verDepartamentos() {
-
+        StdOut.println("Datos del departamento");
+        StdOut.println("===========================");
+        StdOut.println("Id: " + departamento.getID());
+        StdOut.println("Nombre: " + departamento.getNombre());
+        StdOut.println("Nombre y apellido del jefe: " + jefeActual.getNombre()+" "+jefeActual.getApellido());
+        StdOut.println("Rut del Clases.Jefe: " + jefeActual.getRut());
+        StdOut.println("Bono: " + departamento.getBono());
     }
 
     @Override
     public boolean IngresarEmpleado()
     {
-        StdOut.println ("Ingrese el rut del empleado: ");
-        String rut = StdIn.readLine();
-
-
         StdOut.println ("Ingrese el nombre del empleado: ");
         String nombre = StdIn.readLine();
 
+        StdOut.println ("Ingrese el apellido del empleado: ");
+        String apellido = StdIn.readLine();
+
+        StdOut.println ("Ingrese el rut del empleado: ");
+        String rut = StdIn.readLine();
+
         StdOut.println ("Ingrese la fecha de nacimiento: ");
-        String fecha = StdIn.readLine();
+        String fechaNacimiento = StdIn.readAll();
+
+        StdOut.println ("Ingrese el sueldo del empleado: ");
+        int sueldo = Integer.parseInt(StdIn.readLine());
+
+        StdOut.println ("Ingrese la fecha de inicio del empleado: ");
+        String fechaInicio = StdIn.readString();
+
+        StdOut.println ("Ingrese el bono de productividad del empleado: ");
+        int bono = StdIn.readInt();
 
 
-        StdOut.println ("Ingrese el salario del empreado: ");
-        int salario = Integer.parseInt(StdIn.readLine());
-
-
-
-
-
-
+        Empleado empleado = new Empleado(nombre,apellido,rut,fechaNacimiento,sueldo,fechaInicio,bono);
 
 
 
@@ -204,7 +228,39 @@ public class SistemaImpl implements Sistema {
 
     @Override
     public boolean IngresarDepartamento() {
-        return false;
+
+        StdOut.println ("Ingrese el nombre del departamento: ");
+        String nombre = StdIn.readLine();
+
+        StdOut.println ("Ingrese el bono asosciado al departamento: ");
+        int bono = StdIn.readInt();
+
+        StdOut.println ("Ingrese la cantidad de empleados que posee el departamento: ");
+        int cantEmpleados = StdIn.readInt();
+
+        StdOut.println("Ingrese su rut");
+        String rutJefe = StdIn.readLine();
+        if (ListaTrabajadores.buscarCliente(rut) != null) {
+            StdOut.println("El rut ingresado ya se encuentra registrado");
+            return false;
+        }
+        if (rutJefe.contains(".") || rutJefe.contains("-")) {
+            rutJefe = rutJefe.replace(".", "");
+            rutJefe = rutJefe.replace("-", "");
+        }
+        if (!rutValido(rutJefe)) {
+            StdOut.println("El rut ingresado no es válido");
+            return false;
+        }
+
+
+        Departamento departamento1 = new Departamento(departamento.setID("random"),);
+
+
+
+
+
+        return true;
     }
 
     @Override

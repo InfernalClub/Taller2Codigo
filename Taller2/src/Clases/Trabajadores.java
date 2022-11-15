@@ -8,19 +8,19 @@ public abstract class Trabajadores {
     String nombre;
     String apellido;
     String rut;
-    int edad;
+    String fechaNacimiento;
     int sueldo;
-    Calendar fechaIngreso;
-    Departamento departamento;
+    String fechaInicio;
+    int bono;
 
-    public Trabajadores(String nombre, String apellido, String rut, int edad, int sueldo, Calendar fechaIngreso, Departamento departamento) {
+    public Trabajadores(String nombre, String apellido, String rut, String fechaNacimiento, int sueldo, String fechaInicio, int bono) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.rut = rut;
-        this.edad = edad;
+        this.fechaNacimiento = fechaNacimiento;
         this.sueldo = sueldo;
-        this.fechaIngreso = fechaIngreso;
-        this.departamento = departamento;
+        this.fechaInicio = fechaInicio;
+        this.bono = bono;
     }
 
     public String getNombre() {
@@ -47,12 +47,12 @@ public abstract class Trabajadores {
         this.rut = rut;
     }
 
-    public int getEdad() {
-        return edad;
+    public String getfechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setfechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public int getSueldo() {
@@ -63,19 +63,19 @@ public abstract class Trabajadores {
         this.sueldo = sueldo;
     }
 
-    public Calendar getFechaIngreso() {
-        return fechaIngreso;
+    public String getfechaInicio() {
+        return fechaInicio;
     }
 
-    public void setFechaIngreso(Calendar fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
+    public void setfechaInicio(String fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
-    public Departamento getDepartamento() {
-        return departamento;
+    public int getBono() {
+        return bono;
     }
 
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
+    public void setBono(int departamento) {
+        this.bono = bono;
     }
 }

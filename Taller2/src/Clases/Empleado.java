@@ -7,8 +7,8 @@ import java.util.Calendar;
 public class Empleado extends Trabajadores {
       Jefe jefeDepartamento;
 
-        public Empleado(String nombre, String apellido, String rut, int edad, int sueldo, Calendar fechaIngreso, Departamento departamento) {
-                super(nombre, apellido, rut, edad, sueldo, fechaIngreso, departamento);
+        public Empleado(String nombre, String apellido, String rut, String fechaNacimiento, int sueldo, String fechaInicio, int bono) {
+                super(nombre, apellido, rut, fechaNacimiento, sueldo, fechaInicio, bono);
         }
 
         public Jefe getJefeDepartamento() {

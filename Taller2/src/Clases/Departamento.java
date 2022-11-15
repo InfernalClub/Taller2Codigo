@@ -10,7 +10,7 @@ public class Departamento {
     public Departamento(String ID, String nombre, int bono, Jefe rutJefe, int cant_Empleados) {
         this.ID = ID;
         this.nombre = nombre;
-        Bono = bono;
+        this.Bono = bono;
         this.rutJefe = rutJefe;
         this.cant_Empleados = cant_Empleados;
     }

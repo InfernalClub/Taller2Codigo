@@ -2,7 +2,8 @@ package Contenedores;
 
 import Clases.Trabajadores;
 
-public class ListaTrabajadores {
+public class ListaTrabajadores
+{
     Trabajadores trabajadores[];
     int cantMax;
     int cantActual;
@@ -24,7 +25,7 @@ public class ListaTrabajadores {
         return cantActual;
     }
 
-    boolean agregarTrabajadores(Trabajadores rut){
+    public boolean agregarTrabajadores(Trabajadores rut){
         return true;
     }
 
@@ -40,7 +41,14 @@ public class ListaTrabajadores {
         return true;
     }
 
-
+    public boolean buscarTrabajador(String rut) {
+        for (int i = 0; i < cantActual; i++) {
+            if (trabajadores[i].getRut().equals(rut)) {
+                return true;
+            }
+        }
+    return true;
+    }
 
 
 }

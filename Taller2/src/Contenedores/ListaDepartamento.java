@@ -38,4 +38,6 @@ public class ListaDepartamento {
     }
 
 
+    public void agregarDepartamento(Departamento departamento) {
+    }
 }

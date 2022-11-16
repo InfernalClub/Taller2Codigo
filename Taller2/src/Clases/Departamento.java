@@ -4,10 +4,10 @@ public class Departamento {
     String ID;
     String nombre;
     int Bono;
-    Jefe rutJefe;
+    String rutJefe;
     int cant_Empleados;
 
-    public Departamento(String ID, String nombre, int bono, Jefe rutJefe, int cant_Empleados) {
+    public Departamento(String ID, String nombre, int bono, String rutJefe, int cant_Empleados) {
         this.ID = ID;
         this.nombre = nombre;
         this.Bono = bono;
@@ -39,11 +39,11 @@ public class Departamento {
         Bono = bono;
     }
 
-    public Jefe getRutJefe() {
+    public String getRutJefe() {
         return rutJefe;
     }
 
-    public void setRutJefe(Jefe rutJefe) {
+    public void setRutJefe(String rutJefe) {
         this.rutJefe = rutJefe;
     }
 

@@ -8,12 +8,12 @@ public abstract class Trabajadores {
     String nombre;
     String apellido;
     String rut;
-    String fechaNacimiento;
+    Calendar fechaNacimiento;
     int sueldo;
-    String fechaInicio;
+    Calendar fechaInicio;
     int bono;
 
-    public Trabajadores(String nombre, String apellido, String rut, String fechaNacimiento, int sueldo, String fechaInicio, int bono) {
+    public Trabajadores(String nombre, String apellido, String rut, Calendar fechaNacimiento, int sueldo, Calendar fechaInicio, int bono) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.rut = rut;
@@ -47,11 +47,11 @@ public abstract class Trabajadores {
         this.rut = rut;
     }
 
-    public String getfechaNacimiento() {
+    public Calendar getfechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setfechaNacimiento(String fechaNacimiento) {
+    public void setfechaNacimiento(Calendar fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -63,11 +63,11 @@ public abstract class Trabajadores {
         this.sueldo = sueldo;
     }
 
-    public String getfechaInicio() {
+    public Calendar getfechaInicio() {
         return fechaInicio;
     }
 
-    public void setfechaInicio(String fechaInicio) {
+    public void setfechaInicio(Calendar fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 

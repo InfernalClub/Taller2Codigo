@@ -193,8 +193,7 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
-    public boolean IngresarEmpleado()
-    {
+    public boolean IngresarEmpleado() throws ParseException {
         StdOut.println ("Ingrese el nombre del empleado: ");
         String nombre = StdIn.readLine();
 
@@ -205,13 +204,19 @@ public class SistemaImpl implements Sistema {
         String rut = StdIn.readLine();
 
         StdOut.println ("Ingrese la fecha de nacimiento: ");
-        String fechaNacimiento = StdIn.readAll();
-
+        String nacimiento = StdIn.readLine();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = sdf.parse(nacimiento);
+        Calendar fechaNacimiento = Calendar.getInstance();
+        fechaNacimiento.setTime(date);
         StdOut.println ("Ingrese el sueldo del empleado: ");
         int sueldo = Integer.parseInt(StdIn.readLine());
 
         StdOut.println ("Ingrese la fecha de inicio del empleado: ");
-        String fechaInicio = StdIn.readString();
+        String fechaIni = StdIn.readString();
+        Date date2 = sdf.parse(fechaIni);
+        Calendar fechaInicio = Calendar.getInstance();
+        fechaNacimiento.setTime(date2);
 
         StdOut.println ("Ingrese el bono de productividad del empleado: ");
         int bono = StdIn.readInt();
@@ -238,9 +243,9 @@ public class SistemaImpl implements Sistema {
         StdOut.println ("Ingrese la cantidad de empleados que posee el departamento: ");
         int cantEmpleados = StdIn.readInt();
 
-        StdOut.println("Ingrese su rut");
+        StdOut.println("Ingrese el rut del jefe asignado");
         String rutJefe = StdIn.readLine();
-        if (ListaTrabajadores.buscarCliente(rut) != null) {
+        if (listaTrabajadores.buscarTrabajador(rutJefe)) {
             StdOut.println("El rut ingresado ya se encuentra registrado");
             return false;
         }
@@ -254,7 +259,7 @@ public class SistemaImpl implements Sistema {
         }
 
 
-        Departamento departamento1 = new Departamento(departamento.setID("random"),);
+        //Departamento departamento1 = new Departamento(departamento.setID("random"));
 
 
 
@@ -451,8 +456,8 @@ public class SistemaImpl implements Sistema {
             int bonoDepa = regEnt.getInt();
             String rutjefe = regEnt.getString();
             int cantEmpleados = regEnt.getInt();
-            //Clases.Departamento departamento = new Clases.Departamento(ID,nombredepa,bonoDepa,rutjefe,cantEmpleados);
-            //listaDepartamento.agregarDepartamento(depatamento);
+            Clases.Departamento departamento = new Clases.Departamento(ID,nombredepa,bonoDepa,rutjefe,cantEmpleados);
+            listaDepartamento.agregarDepartamento(departamento);
 
             for (int i = 1; i <= cantEmpleados; i++)
             {
@@ -480,8 +485,8 @@ public class SistemaImpl implements Sistema {
                 int bonoProductividad = regEnt.getInt();
 
                 // Considerar si cambiamos el creado de empleados al nuevo formato del documento de texto
-                //Clases.Empleado empleado = new Clases.Empleado(nombre, apellido,rut, diaDeNacimiento, salario, fechaIngreso, bonoProductividad, ID)
-                //listaTrabajadores.agregarTrabajadores(empleado);
+                Clases.Empleado empleado = new Clases.Empleado(nombre, apellido,rut, diaDeNacimiento, salario, fechaIngreso, bonoProductividad);
+                listaTrabajadores.agregarTrabajadores(empleado);
 
 
             }

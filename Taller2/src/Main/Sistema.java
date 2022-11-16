@@ -12,7 +12,7 @@ public interface Sistema {
      void menuDepartamentos();
      void verEmpleados();
      void verDepartamentos();
-    boolean IngresarEmpleado();
+    boolean IngresarEmpleado() throws ParseException;
     boolean IngresarDepartamento();
     void departamentoSegunJefe();
     public String[] departamentoMasEmpleados();

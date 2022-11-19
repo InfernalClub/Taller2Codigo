@@ -1,54 +1,59 @@
 package Contenedores;
 
+import Clases.Departamento;
+import Clases.Empleado;
 import Clases.Trabajadores;
+import ucn.StdIn;
+import ucn.StdOut;
 
-public class ListaTrabajadores
-{
-    Trabajadores trabajadores[];
-    int cantMax;
-    int cantActual;
+import java.util.Calendar;
+
+public class ListaTrabajadores {
+
+    /**
+     * vector que contiene a los trabajadores
+     */
+    private final Trabajadores[] vector;
+    /**
+     * cantidad de trabajadores en el vector
+     */
+    private int cantActual;
+    /**
+     * tamanio del vector
+     */
+    private final int Max;
+
+    Trabajadores trabajador;
 
     public ListaTrabajadores(int cantMax) {
-        cantActual=0;
-        cantMax=999;
+        cantActual = 0;
+        Max = cantMax;
+        vector = new Trabajadores[Max];
     }
+
 
     public Trabajadores[] getTrabajadores() {
-        return trabajadores;
+        return vector;
     }
 
-    public int getCantMax() {
-        return cantMax;
+    public int getMax() {
+        return Max;
     }
 
     public int getCantActual() {
         return cantActual;
     }
 
-    public boolean agregarTrabajadores(Trabajadores rut){
-        return true;
-    }
-
-    boolean buscarTrabajadorMayorSueldo(int Sueldo){
-        return true;
-    }
-
-    boolean buscarTrabajadorMenorSueldo(int Sueldo){
-        return true;
-    }
-
-    boolean buscarJefeMayorCantDepartamentos(int cant_Departamentos){
-        return true;
-    }
-
-    public boolean buscarTrabajador(String rut) {
-        for (int i = 0; i < cantActual; i++) {
-            if (trabajadores[i].getRut().equals(rut)) {
-                return true;
-            }
+    public boolean agregarTrabajadores(Trabajadores trabajador){
+        if (vector == null || cantActual == Max) {
+            return false;
         }
-    return true;
-    }
+        vector[cantActual] = trabajador;
+        cantActual++;
+        return true;
 
+    }
 
 }
+
+

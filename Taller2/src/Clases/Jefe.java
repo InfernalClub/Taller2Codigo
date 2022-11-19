@@ -9,19 +9,17 @@ public class Jefe extends Trabajadores {
     int cant_Departamentos;
     String DepartamentoAsignado;
 
-    public Jefe(String nombre, String apellido, String rut, Calendar edad, int sueldo, Calendar fechaIngreso, Departamento departamento, Departamento departamento1, int cant_Departamentos, String departamentoAsignado) {
-        super(nombre, apellido, rut, edad, sueldo, fechaIngreso, departamento);
+    public Jefe(String nombre, String apellido, String rut, Calendar edad, int sueldo, Calendar fechaIngreso, Departamento departamento, Departamento departamento1, int cant_Departamentos, String departamentoAsignado,int bono) {
+        super(nombre, apellido, rut, edad, sueldo, fechaIngreso, bono);
         this.departamento = departamento1;
-        this.cant_Departamentos = cant_Departamentos;
+        this.cant_Departamentos = 0;
         DepartamentoAsignado = departamentoAsignado;
     }
 
-    @Override
+
     public Departamento getDepartamento() {
         return departamento;
     }
-
-    @Override
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
     }

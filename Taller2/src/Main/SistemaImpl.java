@@ -244,7 +244,7 @@ public class SistemaImpl implements Sistema {
 
         StdOut.println("Ingrese el rut del jefe asignado");
         String rutJefe = StdIn.readLine();
-        if (listaTrabajadores.buscarTrabajador(rutJefe)) {
+        if (listaTrabajadores.getTrabajadores(jefeActual)) {
             StdOut.println("El rut ingresado ya se encuentra registrado");
             return false;
         }
@@ -297,6 +297,9 @@ public class SistemaImpl implements Sistema {
 
     @Override
     public String[] empleadosSegunRangoDeInicio(String rango) {
+        StdOut.println("Ingrese cota inferior:");
+
+        StdOut.println("Ingrese cota superior:");
         return new String[0];
     }
 

@@ -3,7 +3,6 @@ package Main;
 import Clases.*;
 import Contenedores.ListaDepartamento;
 import Contenedores.ListaTrabajadores;
-import Main.Sistema;
 import ucn.ArchivoEntrada;
 import ucn.Registro;
 import ucn.StdIn;
@@ -258,8 +257,10 @@ public class SistemaImpl implements Sistema {
             return false;
         }
 
+        String ID;
+        ID = randomID();
 
-        //Departamento departamento1 = new Departamento(departamento.setID("random"));
+
 
 
 
@@ -426,6 +427,37 @@ public class SistemaImpl implements Sistema {
         }
         return rutFormateado;
     }
+
+
+    public String randomID()
+        {
+            String ID;
+            String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            String Numbers = "0123456789";
+            StringBuilder sb = new StringBuilder();
+            StringBuilder nb = new StringBuilder();
+
+
+            for (int i = 0; i < 3; i++)
+            {
+                int index = (int)(alphabet.length()* Math.random());
+                sb.append(alphabet.charAt(index));
+
+            }
+            sb.toString();
+
+            for (int i = 0; i < 3; i++)
+            {
+                int index = (int)(Numbers.length()* Math.random());
+                nb.append(Numbers.charAt(index));
+
+            }
+            nb.toString();
+
+            ID = (sb + "-" + nb);
+            return ID;
+
+        }
     private boolean idFormato(String ID)
     {
         if (ID.length() == 7)

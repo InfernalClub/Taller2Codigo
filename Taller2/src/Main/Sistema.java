@@ -15,21 +15,21 @@ public interface Sistema {
     boolean IngresarEmpleado() throws ParseException;
     boolean IngresarDepartamento();
     void departamentoSegunJefe();
-    public String[] departamentoMasEmpleados();
-    public String[] departamentoMenosEmpleados();
-    public String[] jefeMasDepartamentos(int cantDepartamentos);
+    public void departamentoMasEmpleados();
+    public void departamentoMenosEmpleados();
+    public void jefeMasDepartamentos(int cantDepartamentos);
 
 
-    public String[] empleadosSegunDepartamento(Departamento departamento);
+    public void empleadosSegunDepartamento(Departamento departamento);
 
-    public String[] empleadosSegunRangoDeInicio(String rango);
-    public String[] empleadosSegunJefatura();
-    public String[] empleadosSegunRangoDeSueldo(int sueldo);
-    public String[] empleadosSegunEdad(int edad);
-    public String[] empleadoMayorSueldo(int menor);
-    public String[] empleadoMenorSueldo(int mayor);
+    public void empleadosSegunRangoDeInicio(String rango);
+    public void empleadosSegunJefatura();
+    public void empleadosSegunRangoDeSueldo(int sueldo);
+    public void empleadosSegunEdad(int edad);
+    public void empleadoMayorSueldo(int menor);
+    public void empleadoMenorSueldo(int mayor);
     public void Estadisticas();
-    public void escribirArchivos();
+    public void escribirArchivos() throws IOException;
 
     boolean rutValido(String rut);
 

@@ -3,10 +3,7 @@ package Main;
 import Clases.*;
 import Contenedores.ListaDepartamento;
 import Contenedores.ListaTrabajadores;
-import ucn.ArchivoEntrada;
-import ucn.Registro;
-import ucn.StdIn;
-import ucn.StdOut;
+import ucn.*;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -30,15 +27,16 @@ public class SistemaImpl implements Sistema {
 
     private static Departamento departamento;
 
+    private static Trabajadores trabajadores;
+
 
     public SistemaImpl(int maximo) {
-        listaTrabajadores = new ListaTrabajadores (maximo);
+        listaTrabajadores = new ListaTrabajadores(maximo);
         listaDepartamento = new ListaDepartamento(maximo);
     }
 
     @Override
-    public void iniciar() throws Exception
-    {
+    public void iniciar() throws Exception {
         if (!cargarDatos()) {
             StdOut.println("No se pudo iniciar el programa");
             return;
@@ -75,23 +73,17 @@ public class SistemaImpl implements Sistema {
                     break;
 
                 case 3:
-                    if (IngresarEmpleado())
-                        {
-                            IngresarEmpleado();
-                        }
-                        else
-                        {
-                            menuPrincipal();
-                        }
+                    if (IngresarEmpleado()) {
+                        IngresarEmpleado();
+                    } else {
+                        menuPrincipal();
+                    }
                     break;
 
                 case 4:
-                    if(IngresarDepartamento())
-                    {
+                    if (IngresarDepartamento()) {
                         IngresarDepartamento();
-                    }
-                    else
-                    {
+                    } else {
                         menuPrincipal();
                     }
                     break;
@@ -111,18 +103,14 @@ public class SistemaImpl implements Sistema {
                     StdOut.println("Ingrese una opción válida.");
                     menuPrincipal();
             }
+        } catch (Exception e) {
+            StdOut.println("Ingrese una opción válida.");
+            menuPrincipal();
         }
-
-        catch (Exception e)
-            {
-                StdOut.println("Ingrese una opción válida.");
-                menuPrincipal();
-            }
     }
 
 
-    public void guardarDatos() throws IOException
-    {
+    public void guardarDatos() throws IOException {
 
     }
 
@@ -153,9 +141,9 @@ public class SistemaImpl implements Sistema {
         StdOut.println("");
         StdOut.println("***************************");
     }
+
     @Override
-    public void Estadisticas()
-    {
+    public void Estadisticas() {
         StdOut.println("***************************");
         StdOut.println("Estadisticas");
         StdOut.println("");
@@ -167,6 +155,7 @@ public class SistemaImpl implements Sistema {
         StdOut.println("");
         StdOut.println("***************************");
     }
+
     @Override
     public void verEmpleados() {
         StdOut.println("Datos del empleado");
@@ -175,7 +164,7 @@ public class SistemaImpl implements Sistema {
         StdOut.println("Rut: " + empleadoActual.getRut());
         StdOut.println("Edad: " + empleadoActual.getfechaNacimiento());
         StdOut.println("Fecha de Inicio: " + empleadoActual.getfechaInicio());
-        StdOut.println("Nombre y apellido del jefe: " + jefeActual.getNombre()+" "+jefeActual.getApellido());
+        StdOut.println("Nombre y apellido del jefe: " + jefeActual.getNombre() + " " + jefeActual.getApellido());
         StdOut.println("Clases.Departamento del empleado: " + departamento.getNombre());
 
     }
@@ -186,46 +175,55 @@ public class SistemaImpl implements Sistema {
         StdOut.println("===========================");
         StdOut.println("Id: " + departamento.getID());
         StdOut.println("Nombre: " + departamento.getNombre());
-        StdOut.println("Nombre y apellido del jefe: " + jefeActual.getNombre()+" "+jefeActual.getApellido());
+        StdOut.println("Nombre y apellido del jefe: " + jefeActual.getNombre() + " " + jefeActual.getApellido());
         StdOut.println("Rut del Clases.Jefe: " + jefeActual.getRut());
         StdOut.println("Bono: " + departamento.getBono());
     }
 
     @Override
     public boolean IngresarEmpleado() throws ParseException {
-        StdOut.println ("Ingrese el nombre del empleado: ");
+        StdOut.println("Ingrese el nombre del empleado: ");
         String nombre = StdIn.readLine();
 
-        StdOut.println ("Ingrese el apellido del empleado: ");
+        StdOut.println("Ingrese el apellido del empleado: ");
         String apellido = StdIn.readLine();
 
-        StdOut.println ("Ingrese el rut del empleado: ");
+        StdOut.println("Ingrese el rut del empleado: ");
         String rut = StdIn.readLine();
 
-        StdOut.println ("Ingrese la fecha de nacimiento: ");
+        StdOut.println("Ingrese la fecha de nacimiento: ");
         String nacimiento = StdIn.readLine();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date date = sdf.parse(nacimiento);
         Calendar fechaNacimiento = Calendar.getInstance();
         fechaNacimiento.setTime(date);
-        StdOut.println ("Ingrese el sueldo del empleado: ");
+        StdOut.println("Ingrese el sueldo del empleado: ");
         int sueldo = Integer.parseInt(StdIn.readLine());
 
-        StdOut.println ("Ingrese la fecha de inicio del empleado: ");
+        StdOut.println("Ingrese la fecha de inicio del empleado: ");
         String fechaIni = StdIn.readString();
         Date date2 = sdf.parse(fechaIni);
         Calendar fechaInicio = Calendar.getInstance();
         fechaNacimiento.setTime(date2);
 
-        StdOut.println ("Ingrese el bono de productividad del empleado: ");
+        StdOut.println("Ingrese el bono de productividad del empleado: ");
         int bono = StdIn.readInt();
 
 
-        Empleado empleado = new Empleado(nombre,apellido,rut,fechaNacimiento,sueldo,fechaInicio,bono);
+        Empleado empleado = new Empleado(nombre, apellido, rut, fechaNacimiento, sueldo, fechaInicio, bono);
+        listaTrabajadores.agregarTrabajadores(empleado);
 
+        StdOut.println("Trabajador registrado con éxito");
+        StdOut.println("Con los siguientes datos:");
+        StdOut.println("Rut: " + rut);
+        StdOut.println("Nombre: " + nombre + " Apellido: " + apellido);
+        StdOut.println("Fecha de nacimiento: " + fechaNacimiento);
+        StdOut.println("Sueldo " + sueldo);
+        StdOut.println("Fecha de inicio: " + fechaInicio);
+        StdOut.println("Bono: " + bono);
 
-
-
+        StdOut.println("Presione enter para continuar");
+        StdIn.readLine();
 
         return true;
     }
@@ -233,18 +231,18 @@ public class SistemaImpl implements Sistema {
     @Override
     public boolean IngresarDepartamento() {
 
-        StdOut.println ("Ingrese el nombre del departamento: ");
+        StdOut.println("Ingrese el nombre del departamento: ");
         String nombre = StdIn.readLine();
 
-        StdOut.println ("Ingrese el bono asosciado al departamento: ");
+        StdOut.println("Ingrese el bono asosciado al departamento: ");
         int bono = StdIn.readInt();
 
-        StdOut.println ("Ingrese la cantidad de empleados que posee el departamento: ");
+        StdOut.println("Ingrese la cantidad de empleados que posee el departamento: ");
         int cantEmpleados = StdIn.readInt();
 
         StdOut.println("Ingrese el rut del jefe asignado");
         String rutJefe = StdIn.readLine();
-        if (listaTrabajadores.getTrabajadores(jefeActual)) {
+        if (listaTrabajadores.buscarTrabajador(jefeActual)) {
             StdOut.println("El rut ingresado ya se encuentra registrado");
             return false;
         }
@@ -261,9 +259,18 @@ public class SistemaImpl implements Sistema {
         ID = randomID();
 
 
+        Departamento departamento = new Departamento(ID, nombre, bono, rutJefe, cantEmpleados);
+        listaDepartamento.agregarDepartamento(departamento);
 
+        StdOut.println("Departamento registrado con éxito");
+        StdOut.println("Con los siguientes datos:");
+        StdOut.println("ID " + ID);
+        StdOut.println("Nombre: " + nombre);
+        StdOut.println("Rut del Jefe " + rutJefe);
+        StdOut.println("Cantidad de empleados " + cantEmpleados);
 
-
+        StdOut.println("Presione enter para continuar");
+        StdIn.readLine();
 
 
         return true;
@@ -275,59 +282,59 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
-    public String[] departamentoMasEmpleados() {
-        return new String[0];
+    public void departamentoMasEmpleados() {
+
     }
 
     @Override
-    public String[] departamentoMenosEmpleados() {
-        return new String[0];
+    public void departamentoMenosEmpleados() {
+
     }
 
     @Override
-    public String[] jefeMasDepartamentos(int cantDepartamentos) {
-        return new String[0];
+    public void jefeMasDepartamentos(int cantDepartamentos) {
+
     }
 
 
     @Override
-    public String[] empleadosSegunDepartamento(Departamento departamento) {
-        return new String[0];
+    public void empleadosSegunDepartamento(Departamento departamento) {
+
     }
 
     @Override
-    public String[] empleadosSegunRangoDeInicio(String rango) {
+    public void empleadosSegunRangoDeInicio(String rango) {
         StdOut.println("Ingrese cota inferior:");
-
+        String cotaInferior = StdIn.readString();
         StdOut.println("Ingrese cota superior:");
-        return new String[0];
+        String cotaSuperior = StdIn.readString();
+
     }
 
     @Override
-    public String[] empleadosSegunJefatura() {
-        return new String[0];
+    public void empleadosSegunJefatura() {
+
     }
 
     @Override
-    public String[] empleadosSegunRangoDeSueldo(int sueldo) {
-        return new String[0];
+    public void empleadosSegunRangoDeSueldo(int sueldo) {
+
     }
 
     @Override
-    public String[] empleadosSegunEdad(int edad) {
-        return new String[0];
+    public void empleadosSegunEdad(int edad) {
+
     }
 
     @Override
-    public String[] empleadoMayorSueldo(int mayor) {
-        return new String[0];
+    public void empleadoMayorSueldo(int mayor) {
+
     }
 
     @Override
-    public String[] empleadoMenorSueldo(int menor) {
-        return new String[0];
-    }
+    public void empleadoMenorSueldo(int menor) {
 
+    }
 
 
     private boolean isNumeric(String str) {
@@ -340,9 +347,47 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
-    public void escribirArchivos() {
+    public void escribirArchivos() throws IOException {
 
+        ArchivoSalida arch = new ArchivoSalida("datos.txt");
+        int contador = 0;
+        Registro reg;
+
+        for (Departamento d : listaDepartamento.getVector()) {
+            if (d == null) {
+                break;
+            }
+            reg = new Registro(5);
+
+            reg.agregarCampo(d.getID());
+            reg.agregarCampo(d.getNombre());
+            reg.agregarCampo(d.getBono());
+            reg.agregarCampo(d.getRutJefe());
+            reg.agregarCampo(d.getCant_Empleados());
+
+        }
+
+        for (Trabajadores t : listaTrabajadores.getTrabajadores()){
+            if (t == null) {
+                break;
+            }
+            reg = new Registro(7);
+
+            reg.agregarCampo(t.getNombre());
+            reg.agregarCampo(t.getApellido());
+            reg.agregarCampo(t.getRut());
+            reg.agregarCampo(t.getfechaNacimiento());
+            reg.agregarCampo(t.getSueldo());
+            reg.agregarCampo(t.getfechaInicio());
+            reg.agregarCampo(t.getBono());
+
+            arch.writeRegistro(reg);
+            contador++;
+        }
+        arch.close();
     }
+
+
     @Override
     public boolean rutValido(String rut) {
         try {
@@ -519,8 +564,7 @@ public class SistemaImpl implements Sistema {
 
                 int bonoProductividad = regEnt.getInt();
 
-                // Considerar si cambiamos el creado de empleados al nuevo formato del documento de texto
-                Clases.Empleado empleado = new Clases.Empleado(nombre, apellido,rut, diaDeNacimiento, salario, fechaIngreso, bonoProductividad);
+                Empleado empleado = new Clases.Empleado(nombre, apellido,rut, diaDeNacimiento, salario, fechaIngreso, bonoProductividad);
                 listaTrabajadores.agregarTrabajadores(empleado);
 
 

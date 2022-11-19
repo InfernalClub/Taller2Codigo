@@ -53,6 +53,17 @@ public class ListaTrabajadores {
         return true;
 
     }
+    public Trabajadores buscarTrabajador(String rut) {
+        if (rut == null) {
+            return null;
+        }
+        for (int i = 0; i < cantActual; i++) {
+            if (vector[i].getRut().equalsIgnoreCase(rut)) {
+                return vector[i];//
+            }
+        }
+        return null;
+    }
 
 }
 

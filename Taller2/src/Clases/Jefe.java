@@ -9,11 +9,9 @@ public class Jefe extends Trabajadores {
     int cant_Departamentos;
     String DepartamentoAsignado;
 
-    public Jefe(String nombre, String apellido, String rut, Calendar edad, int sueldo, Calendar fechaIngreso, Departamento departamento, Departamento departamento1, int cant_Departamentos, String departamentoAsignado,int bono) {
+    public Jefe(String nombre, String apellido, String rut, Calendar edad, int sueldo, Calendar fechaIngreso,int bono) {
         super(nombre, apellido, rut, edad, sueldo, fechaIngreso, bono);
-        this.departamento = departamento1;
-        this.cant_Departamentos = 0;
-        DepartamentoAsignado = departamentoAsignado;
+
     }
 
 

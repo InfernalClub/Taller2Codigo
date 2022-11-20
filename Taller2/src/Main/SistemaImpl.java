@@ -35,13 +35,9 @@ public class SistemaImpl implements Sistema {
         listaDepartamento = new ListaDepartamento(maximo);
     }
 
+
     @Override
     public void Iniciar() throws Exception {
-
-    }
-
-    @Override
-    public void iniciar() throws Exception {
         if (!cargarDatos()) {
             StdOut.println("No se pudo iniciar el programa");
             return;
@@ -54,7 +50,7 @@ public class SistemaImpl implements Sistema {
         StdOut.println("***************************");
         StdOut.println("Menu Principal");
         StdOut.println("");
-        StdOut.println("[1] Ver Clases.Trabajadores");
+        StdOut.println("[1] Ver Trabajadores");
         StdOut.println("[2] Ver Departamentos");
         StdOut.println("[3] Ingresar nuevo empleado");
         StdOut.println("[4] Ingresar nuevo departamento");
@@ -493,7 +489,21 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
-    public void empleadoMenorSueldo() {
+    public void empleadoMenorSueldo()
+    {
+        int menorSueldo = 999999999;
+        int contador = 0;
+        for (int i = 0; i < listaTrabajadores.getCantActual(); i++)
+        {
+            Trabajadores trabajador = this.listaTrabajadores.obtenerTrabajador(i);
+            if(trabajador.getSueldo() < menorSueldo)
+            {
+                menorSueldo = trabajador.getSueldo();
+            }
+
+        StdOut.println("El menor sueldo es de "+menorSueldo);
+        }
+
 
     }
 
@@ -708,7 +718,7 @@ public class SistemaImpl implements Sistema {
 
                 int bonoProductividad = regEnt.getInt();
 
-                Empleado empleado = new Clases.Empleado(nombre, apellido,rut, diaDeNacimiento, salario, fechaIngreso, bonoProductividad, null);
+                Empleado empleado = new Clases.Empleado(nombre, apellido,rut, diaDeNacimiento, salario, fechaIngreso, bonoProductividad, rutjefe);
                 listaTrabajadores.agregarTrabajadores(empleado);
 
 

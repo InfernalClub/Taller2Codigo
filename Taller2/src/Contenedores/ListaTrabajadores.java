@@ -17,7 +17,7 @@ public class ListaTrabajadores {
      */
     private final int Max;
 
-    Trabajadores trabajador;
+    Trabajadores trabajador[];
 
     public ListaTrabajadores(int cantMax) {
         cantActual = 0;
@@ -60,7 +60,14 @@ public class ListaTrabajadores {
     }
 
 
-
+    public Trabajadores obtenerTrabajador(int posicion)
+    {
+        if (posicion < 0 || posicion >= this.getCantActual())
+        {
+            return null;
+        }
+        return this.trabajador[posicion];
+    }
 
 }
 

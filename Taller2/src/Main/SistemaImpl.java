@@ -520,7 +520,7 @@ public class SistemaImpl implements Sistema {
     @Override
     public void escribirArchivos() throws IOException {
 
-        ArchivoSalida arch = new ArchivoSalida("datos.txt");
+        ArchivoSalida arch = new ArchivoSalida("Taller2/datos.txt");
         int contador = 0;
         Registro reg;
 
@@ -681,7 +681,7 @@ public class SistemaImpl implements Sistema {
 
 
     public boolean cargarDatos() throws IOException, ParseException {
-        ArchivoEntrada archivo = new ArchivoEntrada("datos.txt");
+        ArchivoEntrada archivo = new ArchivoEntrada("Taller2/datos.txt");
         while(!archivo.isEndFile())
         {
             Registro regEnt = archivo.getRegistro();
@@ -695,14 +695,11 @@ public class SistemaImpl implements Sistema {
 
             for (int i = 1; i <= cantEmpleados; i++)
             {
-
+                regEnt = archivo.getRegistro();
                 String nombre = regEnt.getString();
                 String apellido = regEnt.getString();
                 String rut = regEnt.getString();
-                if (rut.contains(".") || rut.contains("-")) {
-                    rut = rut.replace(".", "");
-                    rut = rut.replace("-", "");
-                }
+
                 String fecha = regEnt.getString();
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 Date date = sdf.parse(fecha);

@@ -8,9 +8,9 @@ public class Empleado extends Trabajadores {
       Jefe jefeDepartamento;
       String rutJefe;
 
-        public Empleado(String nombre, String apellido, String rut, Calendar fechaNacimiento, int sueldo, Calendar fechaInicio, int bono, String rutJefe) {
+        public Empleado(String nombre, String apellido, String rut, String fechaNacimiento, int sueldo, String fechaInicio, int bono, String rutJefe) {
                 super(nombre, apellido, rut, fechaNacimiento, sueldo, fechaInicio, bono);
-                rutJefe = jefeDepartamento.getRut();
+
         }
 
         public Jefe getJefeDepartamento() {

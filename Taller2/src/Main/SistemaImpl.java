@@ -362,7 +362,7 @@ public class SistemaImpl implements Sistema {
         int bono = StdIn.readInt();
 
 
-        Empleado empleado = new Empleado(nombre, apellido, rut, fechaNacimiento, sueldo, fechaInicio, bono, null);
+        Empleado empleado = new Empleado(nombre, apellido, rut, nacimiento, sueldo, fechaIni, bono, null);
         listaTrabajadores.agregarTrabajadores(empleado);
 
         StdOut.println("Trabajador registrado con éxito");
@@ -700,18 +700,18 @@ public class SistemaImpl implements Sistema {
                 String apellido = regEnt.getString();
                 String rut = regEnt.getString();
 
-                String fecha = regEnt.getString();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                Date date = sdf.parse(fecha);
-                Calendar diaDeNacimiento = Calendar.getInstance();
-                diaDeNacimiento.setTime(date);
+                String diaDeNacimiento = regEnt.getString();
+                //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                //Date date = sdf.parse(fecha);
+                //Calendar diaDeNacimiento = Calendar.getInstance();
+                //diaDeNacimiento.setTime(date);
 
                 int salario = regEnt.getInt();
 
-                String fecha2 = regEnt.getString();
-                Date date2 = sdf.parse(fecha2);
-                Calendar fechaIngreso = Calendar.getInstance();
-                fechaIngreso.setTime(date2);
+                String fechaIngreso = regEnt.getString();
+                //Date date2 = sdf.parse(fecha2);
+                //Calendar fechaIngreso = Calendar.getInstance();
+                //fechaIngreso.setTime(date2);
 
                 int bonoProductividad = regEnt.getInt();
 

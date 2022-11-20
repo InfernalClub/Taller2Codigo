@@ -1,19 +1,17 @@
 package Clases;
 
-import Clases.Departamento;
-
 import java.util.Calendar;
 
 public abstract class Trabajadores {
     String nombre;
     String apellido;
     String rut;
-    Calendar fechaNacimiento;
+    String fechaNacimiento;
     int sueldo;
-    Calendar fechaInicio;
+    String fechaInicio;
     int bono;
 
-    public Trabajadores(String nombre, String apellido, String rut, Calendar fechaNacimiento, int sueldo, Calendar fechaInicio, int bono) {
+    public Trabajadores(String nombre, String apellido, String rut, String fechaNacimiento, int sueldo, String fechaInicio, int bono) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.rut = rut;
@@ -47,11 +45,11 @@ public abstract class Trabajadores {
         this.rut = rut;
     }
 
-    public Calendar getfechaNacimiento() {
+    public String getfechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setfechaNacimiento(Calendar fechaNacimiento) {
+    public void setfechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -63,11 +61,11 @@ public abstract class Trabajadores {
         this.sueldo = sueldo;
     }
 
-    public Calendar getfechaInicio() {
+    public String getfechaInicio() {
         return fechaInicio;
     }
 
-    public void setfechaInicio(Calendar fechaInicio) {
+    public void setfechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 

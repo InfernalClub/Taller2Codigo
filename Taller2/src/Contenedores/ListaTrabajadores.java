@@ -1,12 +1,6 @@
 package Contenedores;
 
-import Clases.Departamento;
-import Clases.Empleado;
 import Clases.Trabajadores;
-import ucn.StdIn;
-import ucn.StdOut;
-
-import java.util.Calendar;
 
 public class ListaTrabajadores {
 
@@ -53,17 +47,20 @@ public class ListaTrabajadores {
         return true;
 
     }
-    public Trabajadores buscarTrabajador(String rut) {
+    public boolean buscarTrabajador(String rut) {
         if (rut == null) {
-            return null;
+            return false;
         }
         for (int i = 0; i < cantActual; i++) {
             if (vector[i].getRut().equalsIgnoreCase(rut)) {
-                return vector[i];//
+                return true;
             }
         }
-        return null;
+        return false;
     }
+
+
+
 
 }
 

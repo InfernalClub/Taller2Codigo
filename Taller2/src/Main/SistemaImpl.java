@@ -110,7 +110,9 @@ public class SistemaImpl implements Sistema {
     }
 
 
-    public void guardarDatos() throws IOException {
+
+    public void guardarDatos() throws IOException
+    {
 
     }
 
@@ -127,7 +129,50 @@ public class SistemaImpl implements Sistema {
         StdOut.println("[6] Volver Al Menu Anterior");
         StdOut.println("");
         StdOut.println("***************************");
+
+
+        try
+        {
+            String opcion = StdIn.readLine();
+            int decision;
+            if (isNumeric(opcion)) Integer.parseInt(opcion);
+            decision = Integer.parseInt(opcion);
+            switch (decision)
+            {
+                case 1:
+                    empleadosSegunDepartamento();
+                    break;
+
+                case 2:
+                    empleadosSegunRangoDeInicio();
+                    break;
+
+                case 3:
+                    empleadosSegunJefatura();
+
+                case 4:
+                    empleadosSegunRangoDeSueldo();
+
+                case 5:
+                    empleadosSegunEdad();
+
+                case 6:
+                    menuPrincipal();
+
+                default:
+                    StdOut.println("Ingrese una opcion de la lista: ");
+
+
+            }
+
+        }
+        catch (Exception e) {
+            StdOut.println("Ingrese una opción válida.");
+            menuPrincipal();
+        }
     }
+
+
 
     @Override
     public void menuDepartamentos() {
@@ -210,7 +255,7 @@ public class SistemaImpl implements Sistema {
         int bono = StdIn.readInt();
 
 
-        Empleado empleado = new Empleado(nombre, apellido, rut, fechaNacimiento, sueldo, fechaInicio, bono);
+        Empleado empleado = new Empleado(nombre, apellido, rut, fechaNacimiento, sueldo, fechaInicio, bono, null);
         listaTrabajadores.agregarTrabajadores(empleado);
 
         StdOut.println("Trabajador registrado con éxito");
@@ -242,7 +287,7 @@ public class SistemaImpl implements Sistema {
 
         StdOut.println("Ingrese el rut del jefe asignado");
         String rutJefe = StdIn.readLine();
-        if (listaTrabajadores.buscarTrabajador(jefeActual)) {
+        if (listaTrabajadores.buscarTrabajador(trabajadores.getRut())) {
             StdOut.println("El rut ingresado ya se encuentra registrado");
             return false;
         }
@@ -564,7 +609,7 @@ public class SistemaImpl implements Sistema {
 
                 int bonoProductividad = regEnt.getInt();
 
-                Empleado empleado = new Clases.Empleado(nombre, apellido,rut, diaDeNacimiento, salario, fechaIngreso, bonoProductividad);
+                Empleado empleado = new Clases.Empleado(nombre, apellido,rut, diaDeNacimiento, salario, fechaIngreso, bonoProductividad, null);
                 listaTrabajadores.agregarTrabajadores(empleado);
 
 

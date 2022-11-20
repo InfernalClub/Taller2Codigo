@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 public interface Sistema {
-     void iniciar() throws Exception;
+     void Iniciar() throws Exception;
      void menuPrincipal();
      void menuEmpleados();
      void menuDepartamentos();
@@ -18,17 +18,17 @@ public interface Sistema {
     public void departamentoMasEmpleados();
     public void departamentoMenosEmpleados();
     public void departamentoSegunRangoDeBonos();
-    public void jefeMasDepartamentos(int cantDepartamentos);
+    public void jefeMasDepartamentos();
 
 
-    public void empleadosSegunDepartamento(Departamento departamento);
+    public void empleadosSegunDepartamento();
 
-    public void empleadosSegunRangoDeInicio(String rango);
+    public void empleadosSegunRangoDeInicio();
     public void empleadosSegunJefatura();
-    public void empleadosSegunRangoDeSueldo(int sueldo);
-    public void empleadosSegunEdad(int edad);
-    public void empleadoMayorSueldo(int menor);
-    public void empleadoMenorSueldo(int mayor);
+    public void empleadosSegunRangoDeSueldo();
+    public void empleadosSegunEdad();
+    public void empleadoMayorSueldo();
+    public void empleadoMenorSueldo();
     public void Estadisticas();
     public void escribirArchivos() throws IOException;
 

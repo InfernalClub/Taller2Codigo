@@ -36,7 +36,7 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
-    public void iniciar() throws Exception {
+    public void Iniciar() throws Exception {
         if (!cargarDatos()) {
             StdOut.println("No se pudo iniciar el programa");
             return;
@@ -93,7 +93,7 @@ public class SistemaImpl implements Sistema {
                     break;
 
                 case 6:
-                    guardarDatos();
+                    escribirArchivos();
                     StdOut.println("Se cierra el programa");
                     StdOut.println("Gracias por utilizar nuestros servicios");
                     Salir();
@@ -107,14 +107,9 @@ public class SistemaImpl implements Sistema {
             StdOut.println("Ingrese una opción válida.");
             menuPrincipal();
         }
-    }
+    }  //Listo
 
 
-
-    public void guardarDatos() throws IOException
-    {
-
-    }
 
     @Override
     public void menuEmpleados() {
@@ -149,24 +144,18 @@ public class SistemaImpl implements Sistema {
 
                 case 3:
                     empleadosSegunJefatura();
-                    break;
 
                 case 4:
                     empleadosSegunRangoDeSueldo();
-                    break;
 
                 case 5:
                     empleadosSegunEdad();
-                    break;
 
                 case 6:
-                    StdOut.println("Volviendo al menu principal");
                     menuPrincipal();
-                    break;
 
                 default:
                     StdOut.println("Ingrese una opcion de la lista: ");
-                    menuEmpleados();
 
 
             }
@@ -176,7 +165,7 @@ public class SistemaImpl implements Sistema {
             StdOut.println("Ingrese una opción válida.");
             menuPrincipal();
         }
-    }
+    } //Listo
 
 
 
@@ -227,68 +216,20 @@ public class SistemaImpl implements Sistema {
             StdOut.println("Ingrese una opción válida.");
             menuPrincipal();
         }
-    }
+    } //Listo
 
     @Override
     public void Estadisticas() {
         StdOut.println("***************************");
         StdOut.println("Estadisticas");
-        StdOut.println("Seleccione una opcion de la lista");
+        StdOut.println("");
         StdOut.println("[1] Empleado con Mayor Sueldo");
         StdOut.println("[2] Empleado con Menor Sueldo");
         StdOut.println("[3] Departamento con mas empleados");
         StdOut.println("[4] Departamento con menos empleados");
         StdOut.println("[5] Jefes con mas departamentos");
-        StdOut.println("[6] Volver al Menu Principal");
         StdOut.println("");
         StdOut.println("***************************");
-
-        try
-        {
-            String estadistico = StdIn.readLine();
-            int valor;
-            if (isNumeric(estadistico)) Integer.parseInt(estadistico);
-            valor  = Integer.parseInt(estadistico);
-            switch (valor)
-            {
-                case 1:
-                    empleadoMayorSueldo();
-                    break;
-
-                case 2:
-                    empleadoMenorSueldo();
-                    break;
-
-                case 3:
-                    departamentoMasEmpleados();
-                    break;
-
-                case 4:
-                    departamentoMenosEmpleados();
-                    break;
-
-                case 5:
-                    jefeMasDepartamentos();
-                    break;
-
-                case 6:
-                    menuPrincipal();
-                    StdOut.println("Volviendo al menu principal");
-                    break;
-
-                default:
-                    StdOut.println("Ingrese una opcion de la lista: ");
-                    Estadisticas();
-            }
-
-
-        }
-
-        catch (Exception e)
-        {
-            StdOut.println("Ingrese una opción válida.");
-            menuPrincipal();
-        }
     }
 
     @Override
@@ -302,7 +243,7 @@ public class SistemaImpl implements Sistema {
         StdOut.println("Nombre y apellido del jefe: " + jefeActual.getNombre() + " " + jefeActual.getApellido());
         StdOut.println("Clases.Departamento del empleado: " + departamento.getNombre());
 
-    }
+    } //Listo
 
     @Override
     public void verDepartamentos() {
@@ -313,7 +254,7 @@ public class SistemaImpl implements Sistema {
         StdOut.println("Nombre y apellido del jefe: " + jefeActual.getNombre() + " " + jefeActual.getApellido());
         StdOut.println("Rut del Clases.Jefe: " + jefeActual.getRut());
         StdOut.println("Bono: " + departamento.getBono());
-    }
+    } //Listo
 
     @Override
     public boolean IngresarEmpleado() throws ParseException {
@@ -361,7 +302,7 @@ public class SistemaImpl implements Sistema {
         StdIn.readLine();
 
         return true;
-    }
+    } //Listo
 
     @Override
     public boolean IngresarDepartamento() {
@@ -409,7 +350,7 @@ public class SistemaImpl implements Sistema {
 
 
         return true;
-    }
+    } //Listo
 
     @Override
     public void departamentoSegunJefe() {
@@ -432,18 +373,18 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
-    public void jefeMasDepartamentos(int cantDepartamentos) {
+    public void jefeMasDepartamentos() {
 
     }
 
 
     @Override
-    public void empleadosSegunDepartamento(Departamento departamento) {
+    public void empleadosSegunDepartamento() {
 
     }
 
     @Override
-    public void empleadosSegunRangoDeInicio(String rango) {
+    public void empleadosSegunRangoDeInicio() {
         StdOut.println("Ingrese cota inferior:");
         String cotaInferior = StdIn.readString();
         StdOut.println("Ingrese cota superior:");
@@ -457,22 +398,22 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
-    public void empleadosSegunRangoDeSueldo(int sueldo) {
+    public void empleadosSegunRangoDeSueldo() {
 
     }
 
     @Override
-    public void empleadosSegunEdad(int edad) {
+    public void empleadosSegunEdad() {
 
     }
 
     @Override
-    public void empleadoMayorSueldo(int mayor) {
+    public void empleadoMayorSueldo() {
 
     }
 
     @Override
-    public void empleadoMenorSueldo(int menor) {
+    public void empleadoMenorSueldo() {
 
     }
 
@@ -516,9 +457,9 @@ public class SistemaImpl implements Sistema {
             reg.agregarCampo(t.getNombre());
             reg.agregarCampo(t.getApellido());
             reg.agregarCampo(t.getRut());
-            reg.agregarCampo(t.getfechaNacimiento());
+            reg.agregarCampo(t.getfechaNacimiento()); //arreglar
             reg.agregarCampo(t.getSueldo());
-            reg.agregarCampo(t.getfechaInicio());
+            reg.agregarCampo(t.getfechaInicio()); //arreglar
             reg.agregarCampo(t.getBono());
 
             arch.writeRegistro(reg);
@@ -646,23 +587,7 @@ public class SistemaImpl implements Sistema {
             return ID;
 
         }
-    private boolean idFormato(String ID)
-    {
-        if (ID.length() == 7)
-        {
-            if(Character.isAlphabetic(ID.charAt(0)) && Character.isAlphabetic(ID.charAt(1)) && Character.isAlphabetic(ID.charAt(2)) && ID.charAt(3) =='-' && Character.isDigit(ID.charAt(4)) && Character.isDigit(ID.charAt(5)) && Character.isDigit(ID.charAt(6)))
-            {
-                return true;
-            }
-            else
-            {
-               StdOut.println("Ingrese un ID valido");
-               return false;
-            }
 
-        }
-        return true;
-    }
 
 
 

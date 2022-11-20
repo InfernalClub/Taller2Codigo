@@ -325,6 +325,16 @@ public class SistemaImpl implements Sistema {
 
         StdOut.println("Ingrese el rut del empleado: ");
         String rut = StdIn.readLine();
+        if (listaTrabajadores.buscarTrabajador(rut))
+        {
+            StdOut.println("El rut ya se encuentra registrado");
+            return false;
+        }
+        if (rut.contains(".") || rut.contains("-"))
+        {
+            rut = rut.replace(".", "");
+            rut = rut.replace("-", "");
+        }
 
         StdOut.println("Ingrese la fecha de nacimiento: ");
         String nacimiento = StdIn.readLine();
@@ -432,18 +442,18 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
-    public void jefeMasDepartamentos(int cantDepartamentos) {
+    public void jefeMasDepartamentos() {
 
     }
 
 
     @Override
-    public void empleadosSegunDepartamento(Departamento departamento) {
+    public void empleadosSegunDepartamento() {
 
     }
 
     @Override
-    public void empleadosSegunRangoDeInicio(String rango) {
+    public void empleadosSegunRangoDeInicio() {
         StdOut.println("Ingrese cota inferior:");
         String cotaInferior = StdIn.readString();
         StdOut.println("Ingrese cota superior:");
@@ -457,22 +467,22 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
-    public void empleadosSegunRangoDeSueldo(int sueldo) {
+    public void empleadosSegunRangoDeSueldo() {
 
     }
 
     @Override
-    public void empleadosSegunEdad(int edad) {
+    public void empleadosSegunEdad() {
 
     }
 
     @Override
-    public void empleadoMayorSueldo(int mayor) {
+    public void empleadoMayorSueldo() {
 
     }
 
     @Override
-    public void empleadoMenorSueldo(int menor) {
+    public void empleadoMenorSueldo() {
 
     }
 
@@ -516,9 +526,9 @@ public class SistemaImpl implements Sistema {
             reg.agregarCampo(t.getNombre());
             reg.agregarCampo(t.getApellido());
             reg.agregarCampo(t.getRut());
-            reg.agregarCampo(t.getfechaNacimiento());
+            reg.agregarCampo(String.valueOf(t.getfechaNacimiento()));
             reg.agregarCampo(t.getSueldo());
-            reg.agregarCampo(t.getfechaInicio());
+            reg.agregarCampo(String.valueOf(t.getfechaInicio()));
             reg.agregarCampo(t.getBono());
 
             arch.writeRegistro(reg);
@@ -646,23 +656,6 @@ public class SistemaImpl implements Sistema {
             return ID;
 
         }
-    private boolean idFormato(String ID)
-    {
-        if (ID.length() == 7)
-        {
-            if(Character.isAlphabetic(ID.charAt(0)) && Character.isAlphabetic(ID.charAt(1)) && Character.isAlphabetic(ID.charAt(2)) && ID.charAt(3) =='-' && Character.isDigit(ID.charAt(4)) && Character.isDigit(ID.charAt(5)) && Character.isDigit(ID.charAt(6)))
-            {
-                return true;
-            }
-            else
-            {
-               StdOut.println("Ingrese un ID valido");
-               return false;
-            }
-
-        }
-        return true;
-    }
 
 
 

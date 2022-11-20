@@ -149,18 +149,24 @@ public class SistemaImpl implements Sistema {
 
                 case 3:
                     empleadosSegunJefatura();
+                    break;
 
                 case 4:
                     empleadosSegunRangoDeSueldo();
+                    break;
 
                 case 5:
                     empleadosSegunEdad();
+                    break;
 
                 case 6:
+                    StdOut.println("Volviendo al menu principal");
                     menuPrincipal();
+                    break;
 
                 default:
                     StdOut.println("Ingrese una opcion de la lista: ");
+                    menuEmpleados();
 
 
             }
@@ -191,14 +197,62 @@ public class SistemaImpl implements Sistema {
     public void Estadisticas() {
         StdOut.println("***************************");
         StdOut.println("Estadisticas");
-        StdOut.println("");
-        StdOut.println("[1] Clases.Empleado con Mayor Sueldo");
-        StdOut.println("[2] Clases.Empleado con Menor Sueldo");
-        StdOut.println("[3] Clases.Departamento con mas empleados");
-        StdOut.println("[4] Clases.Departamento con menos empleados");
+        StdOut.println("Seleccione una opcion de la lista");
+        StdOut.println("[1] Empleado con Mayor Sueldo");
+        StdOut.println("[2] Empleado con Menor Sueldo");
+        StdOut.println("[3] Departamento con mas empleados");
+        StdOut.println("[4] Departamento con menos empleados");
         StdOut.println("[5] Jefes con mas departamentos");
+        StdOut.println("[6] Volver al Menu Principal");
         StdOut.println("");
         StdOut.println("***************************");
+
+        try
+        {
+            String estadistico = StdIn.readLine();
+            int valor;
+            if (isNumeric(estadistico)) Integer.parseInt(estadistico);
+            valor  = Integer.parseInt(estadistico);
+            switch (valor)
+            {
+                case 1:
+                    empleadoMayorSueldo();
+                    break;
+
+                case 2:
+                    empleadoMenorSueldo();
+                    break;
+
+                case 3:
+                    departamentoMasEmpleados();
+                    break;
+
+                case 4:
+                    departamentoMenosEmpleados();
+                    break;
+
+                case 5:
+                    jefeMasDepartamentos();
+                    break;
+
+                case 6:
+                    menuPrincipal();
+                    StdOut.println("Volviendo al menu principal");
+                    break;
+
+                default:
+                    StdOut.println("Ingrese una opcion de la lista: ");
+                    Estadisticas();
+            }
+
+
+        }
+
+        catch (Exception e)
+        {
+            StdOut.println("Ingrese una opción válida.");
+            menuPrincipal();
+        }
     }
 
     @Override

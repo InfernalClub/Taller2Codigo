@@ -17,6 +17,7 @@ public interface Sistema {
     void departamentoSegunJefe();
     public void departamentoMasEmpleados();
     public void departamentoMenosEmpleados();
+    public void departamentoSegunRangoDeBonos();
     public void jefeMasDepartamentos(int cantDepartamentos);
 
 

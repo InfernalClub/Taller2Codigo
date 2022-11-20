@@ -96,7 +96,7 @@ public class SistemaImpl implements Sistema {
                     guardarDatos();
                     StdOut.println("Se cierra el programa");
                     StdOut.println("Gracias por utilizar nuestros servicios");
-                    System.exit(0);
+                    Salir();
                     break;
 
                 default:
@@ -185,6 +185,42 @@ public class SistemaImpl implements Sistema {
         StdOut.println("[4] Volver Al Menu Anterior");
         StdOut.println("");
         StdOut.println("***************************");
+
+        try
+        {
+            String opcion = StdIn.readLine();
+            int decision;
+            if (isNumeric(opcion)) Integer.parseInt(opcion);
+            decision = Integer.parseInt(opcion);
+            switch (decision)
+            {
+                case 1:
+                    verDepartamentos();
+                    break;
+
+                case 2:
+                    departamentoSegunJefe();
+                    break;
+
+                case 3:
+                    departamentoSegunRangoDeBonos();
+                    break;
+
+                case 4:
+                    menuPrincipal();
+                    break;
+
+                default:
+                    StdOut.println("Ingrese una opcion de la lista: ");
+
+
+            }
+
+        }
+        catch (Exception e) {
+            StdOut.println("Ingrese una opción válida.");
+            menuPrincipal();
+        }
     }
 
     @Override
@@ -333,6 +369,11 @@ public class SistemaImpl implements Sistema {
 
     @Override
     public void departamentoMenosEmpleados() {
+
+    }
+
+    @Override
+    public void departamentoSegunRangoDeBonos() {
 
     }
 
@@ -620,6 +661,6 @@ public class SistemaImpl implements Sistema {
     }
     @Override
     public void Salir() {
-
+        System.exit(6);
     }
 }

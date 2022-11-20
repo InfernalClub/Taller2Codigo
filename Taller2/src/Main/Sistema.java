@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 public interface Sistema {
-     void iniciar() throws Exception;
+     void Iniciar() throws Exception;
      void menuPrincipal();
      void menuEmpleados();
      void menuDepartamentos();

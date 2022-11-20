@@ -10,9 +10,9 @@ import ucn.StdOut;
 
 public class Main
 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         SistemaImpl sist = new SistemaImpl(1000);
 
-             sist.menuPrincipal();
+             sist.Iniciar();
     }
 }

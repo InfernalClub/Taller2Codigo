@@ -36,6 +36,11 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
+    public void Iniciar() throws Exception {
+
+    }
+
+    @Override
     public void iniciar() throws Exception {
         if (!cargarDatos()) {
             StdOut.println("No se pudo iniciar el programa");
@@ -334,6 +339,12 @@ public class SistemaImpl implements Sistema {
         {
             rut = rut.replace(".", "");
             rut = rut.replace("-", "");
+        }
+
+        if (!rutValido(rut))
+        {
+            StdOut.println("El rut ingersado no es valido");
+            return false;
         }
 
         StdOut.println("Ingrese la fecha de nacimiento: ");

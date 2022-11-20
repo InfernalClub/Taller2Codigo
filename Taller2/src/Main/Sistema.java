@@ -7,7 +7,10 @@ import java.text.ParseException;
 
 public interface Sistema {
      void Iniciar() throws Exception;
-     void menuPrincipal();
+
+    void iniciar() throws Exception;
+
+    void menuPrincipal();
      void menuEmpleados();
      void menuDepartamentos();
      void verEmpleados();

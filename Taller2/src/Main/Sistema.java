@@ -14,7 +14,7 @@ public interface Sistema {
      void menuEmpleados();
      void menuDepartamentos();
      void verEmpleados();
-     void verDepartamentos();
+     void TodosLosDepartamentos();
     boolean IngresarEmpleado() throws ParseException;
     boolean IngresarDepartamento();
     void departamentoSegunJefe();

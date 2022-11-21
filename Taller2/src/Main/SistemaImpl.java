@@ -202,7 +202,7 @@ public class SistemaImpl implements Sistema {
             switch (decision)
             {
                 case 1:
-                    verDepartamentos();
+                    TodosLosDepartamentos();
                     break;
 
                 case 2:
@@ -306,7 +306,7 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
-    public void verDepartamentos() {
+    public void TodosLosDepartamentos() {
         StdOut.println("Datos del departamento");
         StdOut.println("===========================");
         StdOut.println("Id: " + departamento.getID());

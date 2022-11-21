@@ -456,7 +456,7 @@ public class SistemaImpl implements Sistema {
 
     @Override
     public void empleadosSegunDepartamento() {
-        verDepartamentos();
+        TodosLosDepartamentos();
         StdOut.println("¿Que departamento desea seleccionar");
         String opcionDepa = StdIn.readString();
     }

@@ -29,7 +29,7 @@ public interface Sistema {
     public void empleadosSegunRangoDeInicio();
     public void empleadosSegunJefatura();
     public void empleadosSegunRangoDeSueldo();
-    public void empleadosSegunEdad();
+    public void empleadosSegunRangoEdad();
     public void empleadoMayorSueldo();
     public void empleadoMenorSueldo();
     public void Estadisticas();

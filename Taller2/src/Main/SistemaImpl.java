@@ -66,11 +66,11 @@ public class SistemaImpl implements Sistema {
             opcion = Integer.parseInt(opaux);
             switch (opcion) {
                 case 1:
-                    verEmpleados();
+                    menuEmpleados();
                     break;
 
                 case 2:
-                    verDepartamentos();
+                    menuDepartamentos();
                     break;
 
                 case 3:
@@ -157,7 +157,7 @@ public class SistemaImpl implements Sistema {
                     break;
 
                 case 5:
-                    empleadosSegunEdad();
+                    empleadosSegunRangoEdad();
                     break;
 
                 case 6:
@@ -456,7 +456,9 @@ public class SistemaImpl implements Sistema {
 
     @Override
     public void empleadosSegunDepartamento() {
-
+        verDepartamentos();
+        StdOut.println("¿Que departamento desea seleccionar");
+        String opcionDepa = StdIn.readString();
     }
 
     @Override
@@ -470,22 +472,40 @@ public class SistemaImpl implements Sistema {
 
     @Override
     public void empleadosSegunJefatura() {
-
+        StdOut.println("Ingrese el rut del jefe designado");
+        String rutJefe = StdIn.readString();
     }
 
     @Override
     public void empleadosSegunRangoDeSueldo() {
-
+        StdOut.println("Ingrese un rango de sueldos inicial");
+        String rango1 = StdIn.readString();
+        StdOut.println("Ingrese el rango de sueldos final");
+        String rango2 = StdIn.readString();
     }
 
     @Override
-    public void empleadosSegunEdad() {
-
+    public void empleadosSegunRangoEdad() {
+        StdOut.println("Ingrese un rango de edad inicial");
+        String rango1 = StdIn.readString();
+        StdOut.println("Ingrese el rango de edad final");
+        String rango2 = StdIn.readString();
     }
 
     @Override
     public void empleadoMayorSueldo() {
+        int mayorSueldo = -999999999;
+        int contador = 0;
+        for (int i = 0; i < listaTrabajadores.getCantActual(); i++)
+        {
+            Trabajadores trabajador = listaTrabajadores.obtenerTrabajador(i);
+            if(trabajador.getSueldo() > mayorSueldo)
+            {
+                mayorSueldo = trabajador.getSueldo();
+            }
 
+            StdOut.println("El mayor sueldo es de "+mayorSueldo);
+        }
     }
 
     @Override
@@ -495,7 +515,7 @@ public class SistemaImpl implements Sistema {
         int contador = 0;
         for (int i = 0; i < listaTrabajadores.getCantActual(); i++)
         {
-            Trabajadores trabajador = this.listaTrabajadores.obtenerTrabajador(i);
+            Trabajadores trabajador = listaTrabajadores.obtenerTrabajador(i);
             if(trabajador.getSueldo() < menorSueldo)
             {
                 menorSueldo = trabajador.getSueldo();

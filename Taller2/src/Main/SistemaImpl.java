@@ -436,12 +436,34 @@ public class SistemaImpl implements Sistema {
     @Override
     public void departamentoMasEmpleados() {
 
+        int contador = 0;
+        for (int i = 0; i < listaTrabajadores.getCantActual(); i++)
+        {
+            Trabajadores trabajador = listaTrabajadores.obtenerTrabajador(i);
+            if (i>contador){
+                contador=i;
+            }
+
+
+            StdOut.println("El departamento "+departamento.getNombre()+" posee una cantidad de "+contador);
+        }
     }
 
     @Override
     public void departamentoMenosEmpleados() {
+        int contador = 0;
+        for (int i = 0; i < listaTrabajadores.getCantActual(); i++)
+        {
+            Trabajadores trabajador = listaTrabajadores.obtenerTrabajador(i);
+            if (i<contador){
+                contador=i;
+            }
 
+
+            StdOut.println("El departamento "+departamento.getNombre()+" posee una cantidad de "+contador);
+        }
     }
+
 
     @Override
     public void departamentoSegunRangoDeBonos() {

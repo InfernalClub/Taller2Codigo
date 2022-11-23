@@ -76,4 +76,6 @@ public abstract class Trabajadores {
     public void setBono(int departamento) {
         this.bono = bono;
     }
+
+
 }

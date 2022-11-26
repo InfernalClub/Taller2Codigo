@@ -532,17 +532,21 @@ public class SistemaImpl implements Sistema {
      */
     public void departamentoMasEmpleados() {
 
-        int contador = 0;
-        for (int i = 0; i < listaTrabajadores.getCantActual(); i++)
+        int masEmpleados = -9999;
+        String departamentoMasEmpleados = null;
+        for (int i = 0; i < listaDepartamento.getCantActual(); i++)
         {
-            Trabajadores trabajador = listaTrabajadores.obtenerTrabajador(i);
-            if (i>contador){
-                contador=i;
+            Departamento departamento = listaDepartamento.obtenerDepartamento(i);
+            if (departamento.getCant_Empleados() > masEmpleados)
+            {
+                masEmpleados = departamento.getCant_Empleados();
+                departamentoMasEmpleados = listaDepartamento.obtenerDepartamento(i).getNombre();
             }
 
 
-            StdOut.println("El departamento "+departamento.getNombre()+" posee una cantidad de "+contador);
+
         }
+        StdOut.println("El departamento "+departamentoMasEmpleados+" posee una cantidad de "+masEmpleados);
     }
 
     @Override
@@ -550,17 +554,21 @@ public class SistemaImpl implements Sistema {
      * departamentoMenosEmpleados ofrece la informacion de que departamento posee la menor cantidad de empleados
      */
     public void departamentoMenosEmpleados() {
-        int contador = 0;
-        for (int i = 0; i < listaTrabajadores.getCantActual(); i++)
+        int menosEmpleados = 9999;
+        String departamentoMenosEmpleados = null;
+        for (int i = 0; i < listaDepartamento.getCantActual(); i++)
         {
-            Trabajadores trabajador = listaTrabajadores.obtenerTrabajador(i);
-            if (i<contador){
-                contador=i;
+            Departamento departamento = listaDepartamento.obtenerDepartamento(i);
+            if (departamento.getCant_Empleados() < menosEmpleados)
+            {
+                menosEmpleados = departamento.getCant_Empleados();
+                departamentoMenosEmpleados = listaDepartamento.obtenerDepartamento(i).getNombre();
             }
 
 
-            StdOut.println("El departamento "+departamento.getNombre()+" posee una cantidad de "+contador);
+
         }
+        StdOut.println("El departamento "+departamentoMenosEmpleados+" posee una cantidad de "+menosEmpleados);
     }
 
 
@@ -571,15 +579,20 @@ public class SistemaImpl implements Sistema {
     public void departamentoSegunRangoDeBonos() { //falta
         StdOut.println("Ingrese cota de bono inicial");
         int bono1=StdIn.readInt();
+
         StdOut.println("Ingrese cota de bono final");
         int bono2=StdIn.readInt();
 
-        if (bono1 > bono2){
-            for (int i = bono1; i <=bono2 ; i++) {
+        if (bono1 < bono2)
+        {
+            for (int i = 0; i <=listaDepartamento.obtenerDepartamento(i).getBono() ; i++)
+            {
                 listaDepartamento.buscarDepartamentoSegunRangoBono(i);
                 StdOut.println("Los departamentos disponibles segun el rango son: ");
             }
-        }else {
+        }
+        else
+        {
             StdOut.println("La primera cota debe ser inferior a la segunda");
         }
 
@@ -749,7 +762,9 @@ public class SistemaImpl implements Sistema {
     /**
      * Metodo que verifica en el sistema al empleado que posee el mayor sueldo
      */
-    public void empleadoMayorSueldo() {
+    public void empleadoMayorSueldo()
+    {
+        String millonario = null;
         int mayorSueldo = -999999999;
         int contador = 0;
         for (int i = 0; i < listaTrabajadores.getCantActual(); i++)
@@ -758,10 +773,12 @@ public class SistemaImpl implements Sistema {
             if(trabajador.getSueldo() > mayorSueldo)
             {
                 mayorSueldo = trabajador.getSueldo();
+                millonario = listaTrabajadores.obtenerTrabajador(i).getNombre();
             }
 
-            StdOut.println("El mayor sueldo es de "+mayorSueldo);
+
         }
+        StdOut.println("El mayor sueldo es de "+mayorSueldo+ " con un sueldo de: "+ millonario);
     }
 
     @Override
@@ -770,7 +787,7 @@ public class SistemaImpl implements Sistema {
      */
     public void empleadoMenorSueldo()
     {
-        String mejorPagado = null;
+        String peorPagado = null;
         int menorSueldo = 999999999;
         int contador = 0;
         for (int i = 0; i < listaTrabajadores.getCantActual(); i++)
@@ -778,13 +795,13 @@ public class SistemaImpl implements Sistema {
             Trabajadores trabajador = listaTrabajadores.obtenerTrabajador(i);
             if(trabajador.getSueldo() < menorSueldo)
             {
-                mejorPagado = listaTrabajadores.obtenerTrabajador(i).getNombre();
+                peorPagado = listaTrabajadores.obtenerTrabajador(i).getNombre();
                 menorSueldo = trabajador.getSueldo();
             }
 
-        StdOut.println("El menor sueldo es de "+menorSueldo+ "de nombre: "+ mejorPagado);
-        }
 
+        }
+        StdOut.println("El menor sueldo es de "+menorSueldo+ " de nombre: "+ peorPagado);
 
     }
 

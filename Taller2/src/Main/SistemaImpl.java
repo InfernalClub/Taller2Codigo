@@ -14,11 +14,11 @@ public class SistemaImpl implements Sistema {
     /**
      * Lista de trabajadores
      */
-    private static ListaTrabajadores listaTrabajadores;
+    private  ListaTrabajadores listaTrabajadores;
     /**
      * Lista de Departamentos
      */
-    private static ListaDepartamento listaDepartamento;
+    private  ListaDepartamento listaDepartamento;
     /**
      * Empleado actual
      */
@@ -248,7 +248,7 @@ public class SistemaImpl implements Sistema {
         }
         catch (Exception e) {
             StdOut.println("Ingrese una opción válida.");
-            menuPrincipal();
+            menuDepartamentos();
         }
     }
 
@@ -282,7 +282,15 @@ public class SistemaImpl implements Sistema {
                     break;
 
                 case 2:
-                    empleadoMenorSueldo();
+                    if(valor == 2)
+                    {
+                       System.out.println("it's working");
+                       empleadoMenorSueldo();
+                    }
+                    else{
+                        menuPrincipal();
+                    }
+
                     break;
 
                 case 3:
@@ -337,12 +345,13 @@ public class SistemaImpl implements Sistema {
     /**
      * TodosLosDepartamentos ofrece la informacion de todos los departamentos
      */
-    public void TodosLosDepartamentos()
+    public String[] TodosLosDepartamentos()
     {
-        String[] listaDepas = new String[]
+        String[] listaDepas = new String[this.listaTrabajadores.getCantActual()];
         for (int i = 0; i < listaDepartamento.getCantActual();i++)
         {
             Departamento departamento = listaDepartamento.obtenerDepartamento(i);
+
 
 
 
@@ -354,7 +363,7 @@ public class SistemaImpl implements Sistema {
             StdOut.println("Rut del Clases.Jefe: " + jefeActual.getRut());
             StdOut.println("Bono: " + departamento.getBono());
         }
-
+        return listaDepas;
     }
 
     @Override
@@ -806,7 +815,7 @@ public class SistemaImpl implements Sistema {
 
 
     /**
-     *  Metod que pasa un dato de String a un dato double
+     *  Metodo que pasa un dato de String a un dato double
      * @param str String a verificar
      * @return retorna falso si el numero ingresado esta mal ingresado y true si esta correctamente ingresado
      */

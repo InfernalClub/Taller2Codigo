@@ -25,8 +25,10 @@ public interface Sistema {
      void verEmpleados();
     /**
      * Metodo que muestra todos los departamentos
+     *
+     * @return
      */
-     void TodosLosDepartamentos();
+     String[] TodosLosDepartamentos();
 
     /**
      * Metodo que ingresa a un empleado al sistema

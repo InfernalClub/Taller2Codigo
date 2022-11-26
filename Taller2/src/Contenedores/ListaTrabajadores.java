@@ -2,9 +2,6 @@ package Contenedores;
 
 import Clases.Trabajadores;
 
-/**
- * Clase que representa la lista de trabajadores
- */
 public class ListaTrabajadores {
 
     /**

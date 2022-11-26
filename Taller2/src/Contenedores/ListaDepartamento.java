@@ -11,6 +11,7 @@ public class ListaDepartamento {
      * vector que contiene los departamentos
      */
     private final Departamento[] vector;
+    private Departamento departamento[];
     /**
      * cantidad de departamentos en el vector
      */
@@ -125,6 +126,13 @@ public class ListaDepartamento {
         return null;
     }
 
+    public Departamento obtenerDepartamento(int posicion)
+    {
+        if(posicion < 0 || posicion >= this.cantActual){
+            return null;
+        }
+        return this.departamento[posicion];
+    }
 
 
 

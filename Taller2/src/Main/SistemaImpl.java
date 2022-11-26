@@ -7,11 +7,8 @@ import ucn.*;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 
 public class SistemaImpl implements Sistema {
     /**
@@ -340,14 +337,24 @@ public class SistemaImpl implements Sistema {
     /**
      * TodosLosDepartamentos ofrece la informacion de todos los departamentos
      */
-    public void TodosLosDepartamentos() {
-        StdOut.println("Datos del departamento");
-        StdOut.println("===========================");
-        StdOut.println("Id: " + departamento.getID());
-        StdOut.println("Nombre: " + departamento.getNombre());
-        StdOut.println("Nombre y apellido del jefe: " + jefeActual.getNombre() + " " + jefeActual.getApellido());
-        StdOut.println("Rut del Clases.Jefe: " + jefeActual.getRut());
-        StdOut.println("Bono: " + departamento.getBono());
+    public void TodosLosDepartamentos()
+    {
+
+        for (int i = 0; i < listaDepartamento.getCantActual();i++)
+        {
+            Departamento departamento = listaDepartamento.obtenerDepartamento(i);
+
+
+
+            StdOut.println("Datos del departamento");
+            StdOut.println("===========================");
+            StdOut.println("Id: " + departamento.getID());
+            StdOut.println("Nombre: " + departamento.getNombre());
+            StdOut.println("Nombre y apellido del jefe: " + jefeActual.getNombre() + " " + jefeActual.getApellido());
+            StdOut.println("Rut del Clases.Jefe: " + jefeActual.getRut());
+            StdOut.println("Bono: " + departamento.getBono());
+        }
+
     }
 
     @Override
@@ -765,6 +772,7 @@ public class SistemaImpl implements Sistema {
      */
     public void empleadoMenorSueldo()
     {
+        String mejorPagado = null;
         int menorSueldo = 999999999;
         int contador = 0;
         for (int i = 0; i < listaTrabajadores.getCantActual(); i++)
@@ -772,10 +780,11 @@ public class SistemaImpl implements Sistema {
             Trabajadores trabajador = listaTrabajadores.obtenerTrabajador(i);
             if(trabajador.getSueldo() < menorSueldo)
             {
+                mejorPagado = listaTrabajadores.obtenerTrabajador(i).getNombre();
                 menorSueldo = trabajador.getSueldo();
             }
 
-        StdOut.println("El menor sueldo es de "+menorSueldo);
+        StdOut.println("El menor sueldo es de "+menorSueldo+ "de nombre: "+ mejorPagado);
         }
 
 

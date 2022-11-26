@@ -3,9 +3,6 @@ package Contenedores;
 import Clases.Departamento;
 import Clases.Jefe;
 
-/**
- * Clase que representa la lista de departamentos
- */
 public class ListaDepartamento {
     /**
      * vector que contiene los departamentos

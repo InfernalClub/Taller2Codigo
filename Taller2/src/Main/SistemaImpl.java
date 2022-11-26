@@ -339,7 +339,7 @@ public class SistemaImpl implements Sistema {
      */
     public void TodosLosDepartamentos()
     {
-
+        String[] listaDepas = new String[]
         for (int i = 0; i < listaDepartamento.getCantActual();i++)
         {
             Departamento departamento = listaDepartamento.obtenerDepartamento(i);
@@ -609,7 +609,7 @@ public class SistemaImpl implements Sistema {
         StdIn.readLine();
     }
 
-
+    //Test
     @Override
     /**
      * Metodo que ordena a los empleados segun su departamento asignado

@@ -45,7 +45,7 @@ public class SistemaImpl implements Sistema {
         listaTrabajadores = new ListaTrabajadores(maximo);
         listaDepartamento = new ListaDepartamento(maximo);
     }
-
+//random
 
     @Override
     /**
@@ -530,30 +530,11 @@ public class SistemaImpl implements Sistema {
         StdOut.println("Ingrese el rut del jefe a buscar");
         String rutJefe = StdIn.readString();
 
-        if(rutValido(rutJefe)){
-            for (int i = 0; i <listaDepartamento.getCantActual() ; i++) {
-                if(rutJefe.equalsIgnoreCase(jefeActual.getRut())){
-                    StdOut.println("Los departamentos segun su jefe establecido son: ");
-                    StdOut.println("ID: "+departamento.getID());
-                    StdOut.println("Nombre: "+departamento.getNombre());
-                    StdOut.println("Nombre del Jefe: "+jefeActual.getNombre());
-                    StdOut.println("Apellido del Jefe: "+jefeActual.getApellido());
-                    StdOut.println("Rut del jefe: "+jefeActual.getRut());
-                    StdOut.println("Bono del Departamento: "+departamento.getBono());
-
-                }
-                else {
-                    StdOut.println("Ingrese un rut existente");
-                    menuDepartamentos();
-                }
-            }
-        }else {
-           StdOut.println("Error, intentelo de nuevo");
+        if (rutJefe.equals(jefeActual.getRut())){
+            departamento.setRutJefe(rutJefe);
+            StdOut.println("El departamento que posee el jefe es: "+listaDepartamento.buscarDepartamentoSegunJefe(rutJefe));
         }
-
     }
-
-
 
     @Override
     /**
@@ -603,15 +584,10 @@ public class SistemaImpl implements Sistema {
         StdOut.println("Ingrese cota de bono final");
         int bono2=StdIn.readInt();
 
-        if (departamento.getBono()>=bono1 && departamento.getBono() <= bono2){
-            for (int i = 0; i <listaDepartamento.getCantActual() ; i++) {
-                StdOut.println("Los departamentos segun su rango establecido de bonos son: ");
-                StdOut.println("ID: "+departamento.getID());
-                StdOut.println("Nombre: "+departamento.getNombre());
-                StdOut.println("Nombre del Jefe: "+jefeActual.getNombre());
-                StdOut.println("Apellido del Jefe: "+jefeActual.getApellido());
-                StdOut.println("Rut del jefe: "+jefeActual.getRut());
-                StdOut.println("Bono del Departamento: "+departamento.getBono());
+        if (bono1 > bono2){
+            for (int i = bono1; i <=bono2 ; i++) {
+                listaDepartamento.buscarDepartamentoSegunRangoBono(i);
+                StdOut.println("Los departamentos disponibles segun el rango son: ");
             }
         }else {
             StdOut.println("La primera cota debe ser inferior a la segunda");
@@ -623,7 +599,7 @@ public class SistemaImpl implements Sistema {
     /**
      * Verifica en el sistema cual es el Jefe que posee la mayor cantidad de departamentos
      */
-    public void jefeMasDepartamentos() {
+    public void jefeMasDepartamentos() { // probar
         int mayor = 0;
         int contador = 0;
         for (int i = 0; i < listaDepartamento.getCantActual(); i++) {
@@ -647,25 +623,10 @@ public class SistemaImpl implements Sistema {
     /**
      * Metodo que ordena a los empleados segun su departamento asignado
      */
-    public void empleadosSegunDepartamento() {
+    public void empleadosSegunDepartamento() { // falta
         TodosLosDepartamentos();
-        StdOut.println("¿Que departamento desea seleccionar, ingrese el nombre del departamento para continuar");
+        StdOut.println("¿Que departamento desea seleccionar");
         String opcionDepa = StdIn.readString();
-
-        if (departamento.getNombre().equalsIgnoreCase(opcionDepa)){
-            StdOut.println("Los empleados segun su departamento son: ");
-            StdOut.println("Nombre: "+empleadoActual.getNombre());
-            StdOut.println("Apellido: "+empleadoActual.getApellido());
-            StdOut.println("Fecha de Nacimiento: "+empleadoActual.getfechaNacimiento());
-            StdOut.println("Fecha de Inicio: "+empleadoActual.getfechaInicio());
-            StdOut.println("Nombre del Jefe: "+jefeActual.getNombre());
-            StdOut.println("Apellido del Jefe: "+jefeActual.getApellido());
-            StdOut.println("Nombre del Departamento: "+departamento.getNombre());
-        }else {
-            StdOut.println("Ingrese los parametros correctos");
-            menuEmpleados();
-        }
-
     }
 
     @Override
@@ -712,24 +673,19 @@ public class SistemaImpl implements Sistema {
         StdOut.println("Ingrese el rut del jefe designado");
         String rutJefe = StdIn.readString();
 
-        if (rutValido(rutJefe)){
-            for (int i = 0; i <listaTrabajadores.getCantActual() ; i++) {
-                if(rutJefe.equals(trabajadores.getRut())){
-                    listaTrabajadores.buscarTrabajador(rutJefe);
-                    StdOut.println("Los empleados asignados a un jefe son: "+listaTrabajadores.buscarTrabajador(rutJefe));
-                    StdOut.println("Nombre: "+empleadoActual.getNombre());
-                    StdOut.println("Apellido: "+empleadoActual.getApellido());
-                    StdOut.println("Fecha de Nacimiento: "+empleadoActual.getfechaNacimiento());
-                    StdOut.println("Fecha de Inicio: "+empleadoActual.getfechaInicio());
-                    StdOut.println("Nombre del Jefe: "+jefeActual.getNombre());
-                    StdOut.println("Apellido del Jefe: "+jefeActual.getApellido());
-                    StdOut.println("Nombre del Departamento: "+departamento.getNombre());
-                }else {
-                    StdOut.println("Error, ingrese un rut existente");
-                    menuEmpleados();
-                }
+        for (int i = 0; i <listaTrabajadores.getCantActual() ; i++) {
+            if(rutJefe.equals(trabajadores.getRut())){
+                listaTrabajadores.buscarTrabajador(rutJefe);
+                StdOut.println("Los empleados asignados a un jefe son: "+listaTrabajadores.buscarTrabajador(rutJefe));
+                StdOut.println("Nombre: "+empleadoActual.getNombre());
+                StdOut.println("Apellido: "+empleadoActual.getApellido());
+                StdOut.println("Fecha de Nacimiento: "+empleadoActual.getfechaNacimiento());
+                StdOut.println("Fecha de Inicio: "+empleadoActual.getfechaInicio());
+                StdOut.println("Nombre del Jefe: "+jefeActual.getNombre());
+                StdOut.println("Apellido del Jefe: "+jefeActual.getApellido());
+                StdOut.println("Nombre del Departamento: "+departamento.getNombre());
+            }
         }
-
 
     }
 

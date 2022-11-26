@@ -21,5 +21,8 @@ public class Main
         SistemaImpl sist = new SistemaImpl(1000);
 
              sist.Iniciar();
+
+
+
     }
 }

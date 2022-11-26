@@ -753,7 +753,9 @@ public class SistemaImpl implements Sistema {
     /**
      * Metodo que verifica en el sistema al empleado que posee el mayor sueldo
      */
-    public void empleadoMayorSueldo() {
+    public void empleadoMayorSueldo()
+    {
+        String millonario = null;
         int mayorSueldo = -999999999;
         int contador = 0;
         for (int i = 0; i < listaTrabajadores.getCantActual(); i++)
@@ -762,10 +764,12 @@ public class SistemaImpl implements Sistema {
             if(trabajador.getSueldo() > mayorSueldo)
             {
                 mayorSueldo = trabajador.getSueldo();
+                millonario = listaTrabajadores.obtenerTrabajador(i).getNombre();
             }
 
-            StdOut.println("El mayor sueldo es de "+mayorSueldo);
+
         }
+        StdOut.println("El mayor sueldo es de "+mayorSueldo+ " con un sueldo de: "+ millonario);
     }
 
     @Override
@@ -774,7 +778,7 @@ public class SistemaImpl implements Sistema {
      */
     public void empleadoMenorSueldo()
     {
-        String mejorPagado = null;
+        String peorPagado = null;
         int menorSueldo = 999999999;
         int contador = 0;
         for (int i = 0; i < listaTrabajadores.getCantActual(); i++)
@@ -782,13 +786,13 @@ public class SistemaImpl implements Sistema {
             Trabajadores trabajador = listaTrabajadores.obtenerTrabajador(i);
             if(trabajador.getSueldo() < menorSueldo)
             {
-                mejorPagado = listaTrabajadores.obtenerTrabajador(i).getNombre();
+                peorPagado = listaTrabajadores.obtenerTrabajador(i).getNombre();
                 menorSueldo = trabajador.getSueldo();
             }
 
-        StdOut.println("El menor sueldo es de "+menorSueldo+ "de nombre: "+ mejorPagado);
-        }
 
+        }
+        StdOut.println("El menor sueldo es de "+menorSueldo+ " de nombre: "+ peorPagado);
 
     }
 

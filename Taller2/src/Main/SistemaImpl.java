@@ -38,6 +38,7 @@ public class SistemaImpl implements Sistema {
     private static Trabajadores trabajadores;
 
     /**
+     * Constructor de la clase SistemaImpl
      *
      * @param maximo indica la cantidad maxima de trabajadores y departamentos
      */
@@ -471,7 +472,13 @@ public class SistemaImpl implements Sistema {
      * departamentoSegunJefe es un metodo que permite saber que jefe fue asignado a un departamento en especifico
      */
     public void departamentoSegunJefe() {
+        StdOut.println("Ingrese el rut del jefe a buscar");
+        String rutJefe = StdIn.readString();
 
+        if (rutJefe.equals(jefeActual.getRut())){
+            departamento.setRutJefe(rutJefe);
+            StdOut.println("El departamento que posee el jefe es: "+listaDepartamento.buscarDepartamentoSegunJefe(rutJefe));
+        }
     }
 
     @Override
@@ -516,16 +523,44 @@ public class SistemaImpl implements Sistema {
     /**
      * Metodo que ordena a los departamentos segun su rango de bonos
      */
-    public void departamentoSegunRangoDeBonos() {
+    public void departamentoSegunRangoDeBonos() { //falta
+        StdOut.println("Ingrese cota de bono inicial");
+        int bono1=StdIn.readInt();
+        StdOut.println("Ingrese cota de bono final");
+        int bono2=StdIn.readInt();
+
+        if (bono1 > bono2){
+            for (int i = bono1; i <=bono2 ; i++) {
+                listaDepartamento.buscarDepartamentoSegunRangoBono(i);
+                StdOut.println("Los departamentos disponibles segun el rango son: ");
+            }
+        }else {
+            StdOut.println("La primera cota debe ser inferior a la segunda");
+        }
 
     }
 
     @Override
     /**
-     * Verifica en el sistema cual es el Jefe que posee la mayro cantidad de departamentos
+     * Verifica en el sistema cual es el Jefe que posee la mayor cantidad de departamentos
      */
-    public void jefeMasDepartamentos() {
+    public void jefeMasDepartamentos() { // probar
+        int mayor = 0;
+        int contador = 0;
+        for (int i = 0; i < listaDepartamento.getCantActual(); i++) {
+                if (listaDepartamento.getCantActual()== listaDepartamento.getCantMax()) {
+                    contador++;
 
+            }
+            if (contador > mayor) {
+                mayor = contador;
+
+            }
+            contador = 0;
+        }
+        StdOut.println("El jefe con más departamentos es: " + jefeActual.getNombre()+ " con una cantidad de" + mayor+" departamentos");
+        StdOut.println("Presione enter para continuar");
+        StdIn.readLine();
     }
 
 
@@ -533,7 +568,7 @@ public class SistemaImpl implements Sistema {
     /**
      * Metodo que ordena a los empleados segun su departamento asignado
      */
-    public void empleadosSegunDepartamento() {
+    public void empleadosSegunDepartamento() { // falta
         TodosLosDepartamentos();
         StdOut.println("¿Que departamento desea seleccionar");
         String opcionDepa = StdIn.readString();
@@ -543,7 +578,7 @@ public class SistemaImpl implements Sistema {
     /**
      * Metodo que ordena a los empleados segun rango de Inicio
      */
-    public void empleadosSegunRangoDeInicio() {
+    public void empleadosSegunRangoDeInicio() { // falta
         StdOut.println("Ingrese cota inferior:");
         String cotaInferior = StdIn.readString();
         StdOut.println("Ingrese cota superior:");
@@ -555,16 +590,21 @@ public class SistemaImpl implements Sistema {
     /**
      * Metodo que ordena a los empleados segun su Jefe asignado
      */
-    public void empleadosSegunJefatura() {
+    public void empleadosSegunJefatura() { // falta
         StdOut.println("Ingrese el rut del jefe designado");
         String rutJefe = StdIn.readString();
+
+        if(rutJefe.equals(trabajadores.getRut())){
+            listaTrabajadores.buscarTrabajador(rutJefe);
+            StdOut.println("Los empleados asignados a un jefe son: ");
+        }
     }
 
     @Override
     /**
      * Metodo que ordena a los empleados segun su rango de sueldo
      */
-    public void empleadosSegunRangoDeSueldo() {
+    public void empleadosSegunRangoDeSueldo() { //falta
         StdOut.println("Ingrese un rango de sueldos inicial");
         String rango1 = StdIn.readString();
         StdOut.println("Ingrese el rango de sueldos final");
@@ -575,11 +615,20 @@ public class SistemaImpl implements Sistema {
     /**
      * Metodo que ordena a los empleados segun su rango de edad
      */
-    public void empleadosSegunRangoEdad() {
-        StdOut.println("Ingrese un rango de edad inicial");
-        String rango1 = StdIn.readString();
-        StdOut.println("Ingrese el rango de edad final");
-        String rango2 = StdIn.readString();
+    public void empleadosSegunRangoEdad() { // falta
+        StdOut.println("Ingrese cota de edad inicial");
+        int edad1=StdIn.readInt();
+        StdOut.println("Ingrese cota de bono final");
+        int edad2=StdIn.readInt();
+
+        if (edad1 > edad2){
+            for (int i = edad1; i <=edad2 ; i++) {
+                
+                StdOut.println("Los departamentos disponibles segun el rango son: ");
+            }
+        }else {
+            StdOut.println("La primera cota debe ser inferior a la segunda");
+        }
     }
 
     @Override

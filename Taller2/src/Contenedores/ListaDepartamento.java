@@ -24,6 +24,8 @@ public class ListaDepartamento {
      */
     private Jefe jefe;
 
+
+
     /**
      * Contructor de departamentos que recibe un tamanio maximo
      * @param maximo tamanio del vector
@@ -109,6 +111,18 @@ public class ListaDepartamento {
             }
             return null;
 
+    }
+
+    public Departamento buscarDepartamentoSegunRangoEdad(String fecha){
+        if (fecha.equals(null)){
+            return null;
+        }
+        for (int i = 0; i <cantActual ; i++) {
+            if (jefe.getfechaNacimiento().equals(fecha)){
+                return vector[i];
+            }
+        }
+        return null;
     }
 
 

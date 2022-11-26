@@ -618,10 +618,34 @@ public class SistemaImpl implements Sistema {
      * Metodo que ordena a los empleados segun rango de Inicio
      */
     public void empleadosSegunRangoDeInicio() { // falta
-        StdOut.println("Ingrese cota inferior:");
-        String cotaInferior = StdIn.readString();
-        StdOut.println("Ingrese cota superior:");
-        String cotaSuperior = StdIn.readString();
+        StdOut.println("Ingrese cota de rango inicial");
+        StdOut.println("Ingrese el dia inicial");
+        int dia1 = StdIn.readInt();
+        StdOut.println("Ingrese el mes inicial");
+        int mes1 = StdIn.readInt();
+        StdOut.println("Ingrese el anio inicial");
+        int anio1 = StdIn.readInt();
+        StdOut.println("Ingrese cota de rango final");
+        StdOut.println("Ingrese el dia final");
+        int dia2 = StdIn.readInt();
+        StdOut.println("Ingrese el mes final");
+        int mes2 = StdIn.readInt();
+        StdOut.println("Ingrese el anio final");
+        int anio2 = StdIn.readInt();
+
+        if(esfechaValida(dia1,mes1,anio1) && esfechaValida(dia2,mes2,anio2)){
+            StdOut.println("Los empleados segun su rango de inicio son: ");
+            StdOut.println("Nombre: "+empleadoActual.getNombre());
+            StdOut.println("Apellido: "+empleadoActual.getApellido());
+            StdOut.println("Fecha de Nacimiento: "+empleadoActual.getfechaNacimiento());
+            StdOut.println("Fecha de Inicio: "+empleadoActual.getfechaInicio());
+            StdOut.println("Nombre del Jefe: "+jefeActual.getNombre());
+            StdOut.println("Apellido del Jefe: "+jefeActual.getApellido());
+            StdOut.println("Nombre del Departamento: "+departamento.getNombre());
+        }else {
+            StdOut.println("Ingrese los parametros correctos");
+            menuEmpleados();
+        }
 
     }
 
@@ -629,14 +653,24 @@ public class SistemaImpl implements Sistema {
     /**
      * Metodo que ordena a los empleados segun su Jefe asignado
      */
-    public void empleadosSegunJefatura() { // falta
+    public void empleadosSegunJefatura() {
         StdOut.println("Ingrese el rut del jefe designado");
         String rutJefe = StdIn.readString();
 
-        if(rutJefe.equals(trabajadores.getRut())){
-            listaTrabajadores.buscarTrabajador(rutJefe);
-            StdOut.println("Los empleados asignados a un jefe son: ");
+        for (int i = 0; i <listaTrabajadores.getCantActual() ; i++) {
+            if(rutJefe.equals(trabajadores.getRut())){
+                listaTrabajadores.buscarTrabajador(rutJefe);
+                StdOut.println("Los empleados asignados a un jefe son: "+listaTrabajadores.buscarTrabajador(rutJefe));
+                StdOut.println("Nombre: "+empleadoActual.getNombre());
+                StdOut.println("Apellido: "+empleadoActual.getApellido());
+                StdOut.println("Fecha de Nacimiento: "+empleadoActual.getfechaNacimiento());
+                StdOut.println("Fecha de Inicio: "+empleadoActual.getfechaInicio());
+                StdOut.println("Nombre del Jefe: "+jefeActual.getNombre());
+                StdOut.println("Apellido del Jefe: "+jefeActual.getApellido());
+                StdOut.println("Nombre del Departamento: "+departamento.getNombre());
+            }
         }
+
     }
 
     @Override
@@ -644,11 +678,31 @@ public class SistemaImpl implements Sistema {
      * Metodo que ordena a los empleados segun su rango de sueldo
      */
     public void empleadosSegunRangoDeSueldo() { //falta
-        StdOut.println("Ingrese un rango de sueldos inicial");
-        String rango1 = StdIn.readString();
-        StdOut.println("Ingrese el rango de sueldos final");
-        String rango2 = StdIn.readString();
+        StdOut.println("Ingrese un rango de sueldo inicial");
+        int rango1 = StdIn.readInt();
+        StdOut.println("Ingrese el rango de sueldo final");
+        int rango2 = StdIn.readInt();
+
+        if (rango1 > rango2){
+            for (int i = 0; i <listaTrabajadores.getCantActual() ; i++) {
+                if (trabajadores.getSueldo()>=rango1 && trabajadores.getSueldo()<=rango2){
+                    StdOut.println("Los empleados segun su rango de sueldo son: ");
+                    StdOut.println("Nombre: "+empleadoActual.getNombre());
+                    StdOut.println("Apellido: "+empleadoActual.getApellido());
+                    StdOut.println("Fecha de Nacimiento: "+empleadoActual.getfechaNacimiento());
+                    StdOut.println("Fecha de Inicio: "+empleadoActual.getfechaInicio());
+                    StdOut.println("Nombre del Jefe: "+jefeActual.getNombre());
+                    StdOut.println("Apellido del Jefe: "+jefeActual.getApellido());
+                    StdOut.println("Nombre del Departamento: "+departamento.getNombre());
+                }
+                else {
+                    StdOut.println("Ingrese la informacion correcta");
+                    menuEmpleados();
+                }
+            }
+        }
     }
+
 
     @Override
     /**
@@ -656,18 +710,34 @@ public class SistemaImpl implements Sistema {
      */
     public void empleadosSegunRangoEdad() { // falta
         StdOut.println("Ingrese cota de edad inicial");
-        int edad1=StdIn.readInt();
+        StdOut.println("Ingrese el dia inicial");
+        int dia1 = StdIn.readInt();
+        StdOut.println("Ingrese el mes inicial");
+        int mes1 = StdIn.readInt();
+        StdOut.println("Ingrese el anio inicial");
+        int anio1 = StdIn.readInt();
         StdOut.println("Ingrese cota de bono final");
-        int edad2=StdIn.readInt();
+        StdOut.println("Ingrese el dia final");
+        int dia2 = StdIn.readInt();
+        StdOut.println("Ingrese el mes final");
+        int mes2 = StdIn.readInt();
+        StdOut.println("Ingrese el anio final");
+        int anio2 = StdIn.readInt();
 
-        if (edad1 > edad2){
-            for (int i = edad1; i <=edad2 ; i++) {
-                
-                StdOut.println("Los departamentos disponibles segun el rango son: ");
-            }
+        if(esfechaValida(dia1,mes1,anio1) && esfechaValida(dia2,mes2,anio2)){
+            StdOut.println("Los empleados segun su rango de edad son: ");
+            StdOut.println("Nombre: "+empleadoActual.getNombre());
+            StdOut.println("Apellido: "+empleadoActual.getApellido());
+            StdOut.println("Fecha de Nacimiento: "+empleadoActual.getfechaNacimiento());
+            StdOut.println("Fecha de Inicio: "+empleadoActual.getfechaInicio());
+            StdOut.println("Nombre del Jefe: "+jefeActual.getNombre());
+            StdOut.println("Apellido del Jefe: "+jefeActual.getApellido());
+            StdOut.println("Nombre del Departamento: "+departamento.getNombre());
         }else {
-            StdOut.println("La primera cota debe ser inferior a la segunda");
+            StdOut.println("Ingrese los parametros correctos");
+            menuEmpleados();
         }
+
     }
 
     @Override

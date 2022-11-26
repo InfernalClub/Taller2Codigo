@@ -45,7 +45,6 @@ public class SistemaImpl implements Sistema {
         listaTrabajadores = new ListaTrabajadores(maximo);
         listaDepartamento = new ListaDepartamento(maximo);
     }
-//random
 
     @Override
     /**
@@ -264,7 +263,7 @@ public class SistemaImpl implements Sistema {
         StdOut.println("[2] Empleado con Menor Sueldo");
         StdOut.println("[3] Departamento con mas empleados");
         StdOut.println("[4] Departamento con menos empleados");
-        StdOut.println("[5] Jefes con mas departamentos");
+        StdOut.println("[5] Jefe con mas departamentos");
         StdOut.println("[6] Volver al Menu Principal");
         StdOut.println("");
         StdOut.println("***************************");
@@ -282,15 +281,7 @@ public class SistemaImpl implements Sistema {
                     break;
 
                 case 2:
-                    if(valor == 2)
-                    {
-                       System.out.println("it's working");
-                       empleadoMenorSueldo();
-                    }
-                    else{
-                        menuPrincipal();
-                    }
-
+                    empleadoMenorSueldo();
                     break;
 
                 case 3:
@@ -347,11 +338,9 @@ public class SistemaImpl implements Sistema {
      */
     public String[] TodosLosDepartamentos()
     {
-<<<<<<< HEAD
         String[] listaDepas = new String[this.listaTrabajadores.getCantActual()];
-=======
 
->>>>>>> parent of 673464e (halp)
+
         for (int i = 0; i < listaDepartamento.getCantActual();i++)
         {
             Departamento departamento = listaDepartamento.obtenerDepartamento(i);
@@ -366,6 +355,7 @@ public class SistemaImpl implements Sistema {
             StdOut.println("Nombre y apellido del jefe: " + jefeActual.getNombre() + " " + jefeActual.getApellido());
             StdOut.println("Rut del Clases.Jefe: " + jefeActual.getRut());
             StdOut.println("Bono: " + departamento.getBono());
+            listaDepartamento.agregarDepartamento(departamento);
         }
         return listaDepas;
     }
@@ -603,7 +593,7 @@ public class SistemaImpl implements Sistema {
     /**
      * Verifica en el sistema cual es el Jefe que posee la mayor cantidad de departamentos
      */
-    public void jefeMasDepartamentos() { // probar
+    public void jefeMasDepartamentos() {
         int mayor = 0;
         int contador = 0;
         for (int i = 0; i < listaDepartamento.getCantActual(); i++) {
@@ -627,7 +617,7 @@ public class SistemaImpl implements Sistema {
     /**
      * Metodo que ordena a los empleados segun su departamento asignado
      */
-    public void empleadosSegunDepartamento() { // falta
+    public void empleadosSegunDepartamento() {
         TodosLosDepartamentos();
         StdOut.println("¿Que departamento desea seleccionar");
         String opcionDepa = StdIn.readString();
@@ -637,7 +627,7 @@ public class SistemaImpl implements Sistema {
     /**
      * Metodo que ordena a los empleados segun rango de Inicio
      */
-    public void empleadosSegunRangoDeInicio() { // falta
+    public void empleadosSegunRangoDeInicio() {
         StdOut.println("Ingrese cota de rango inicial");
         StdOut.println("Ingrese el dia inicial");
         int dia1 = StdIn.readInt();
@@ -697,13 +687,12 @@ public class SistemaImpl implements Sistema {
     /**
      * Metodo que ordena a los empleados segun su rango de sueldo
      */
-    public void empleadosSegunRangoDeSueldo() { //falta
+    public void empleadosSegunRangoDeSueldo() {
         StdOut.println("Ingrese un rango de sueldo inicial");
         int rango1 = StdIn.readInt();
         StdOut.println("Ingrese el rango de sueldo final");
         int rango2 = StdIn.readInt();
 
-        if (rango1 > rango2){
             for (int i = 0; i <listaTrabajadores.getCantActual() ; i++) {
                 if (trabajadores.getSueldo()>=rango1 && trabajadores.getSueldo()<=rango2){
                     StdOut.println("Los empleados segun su rango de sueldo son: ");
@@ -720,7 +709,7 @@ public class SistemaImpl implements Sistema {
                     menuEmpleados();
                 }
             }
-        }
+
     }
 
 
@@ -728,15 +717,13 @@ public class SistemaImpl implements Sistema {
     /**
      * Metodo que ordena a los empleados segun su rango de edad
      */
-    public void empleadosSegunRangoEdad() { // falta
-        StdOut.println("Ingrese cota de edad inicial");
+    public void empleadosSegunRangoEdad() {
         StdOut.println("Ingrese el dia inicial");
         int dia1 = StdIn.readInt();
         StdOut.println("Ingrese el mes inicial");
         int mes1 = StdIn.readInt();
         StdOut.println("Ingrese el anio inicial");
         int anio1 = StdIn.readInt();
-        StdOut.println("Ingrese cota de bono final");
         StdOut.println("Ingrese el dia final");
         int dia2 = StdIn.readInt();
         StdOut.println("Ingrese el mes final");
@@ -745,14 +732,16 @@ public class SistemaImpl implements Sistema {
         int anio2 = StdIn.readInt();
 
         if(esfechaValida(dia1,mes1,anio1) && esfechaValida(dia2,mes2,anio2)){
-            StdOut.println("Los empleados segun su rango de edad son: ");
-            StdOut.println("Nombre: "+empleadoActual.getNombre());
-            StdOut.println("Apellido: "+empleadoActual.getApellido());
-            StdOut.println("Fecha de Nacimiento: "+empleadoActual.getfechaNacimiento());
-            StdOut.println("Fecha de Inicio: "+empleadoActual.getfechaInicio());
-            StdOut.println("Nombre del Jefe: "+jefeActual.getNombre());
-            StdOut.println("Apellido del Jefe: "+jefeActual.getApellido());
-            StdOut.println("Nombre del Departamento: "+departamento.getNombre());
+            for (int i = 0; i <listaTrabajadores.getCantActual() ; i++) {
+                StdOut.println("Los empleados segun su rango de edad son: ");
+                StdOut.println("Nombre: "+empleadoActual.getNombre());
+                StdOut.println("Apellido: "+empleadoActual.getApellido());
+                StdOut.println("Fecha de Nacimiento: "+empleadoActual.getfechaNacimiento());
+                StdOut.println("Fecha de Inicio: "+empleadoActual.getfechaInicio());
+                StdOut.println("Nombre del Jefe: "+jefeActual.getNombre());
+                StdOut.println("Apellido del Jefe: "+jefeActual.getApellido());
+                StdOut.println("Nombre del Departamento: "+departamento.getNombre());
+            }
         }else {
             StdOut.println("Ingrese los parametros correctos");
             menuEmpleados();
@@ -1015,9 +1004,9 @@ public class SistemaImpl implements Sistema {
      * cargarDatos es un metodo que lee el archivo de texto y los guarda dentro del sistema
      * @return sirve para verificar si se realizo la carga de los datos
      * @throws IOException
-     * @throws ParseException
+     *
      */
-    public boolean cargarDatos() throws IOException, ParseException {
+    public boolean cargarDatos() throws IOException {
         ArchivoEntrada archivo = new ArchivoEntrada("Taller2/datos.txt");
         while(!archivo.isEndFile())
         {
@@ -1038,10 +1027,6 @@ public class SistemaImpl implements Sistema {
                 String rut = regEnt.getString();
 
                 String diaDeNacimiento = regEnt.getString();
-                //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                //Date date = sdf.parse(fecha);
-                //Calendar diaDeNacimiento = Calendar.getInstance();
-                //diaDeNacimiento.setTime(date);
 
                 int salario = regEnt.getInt();
 

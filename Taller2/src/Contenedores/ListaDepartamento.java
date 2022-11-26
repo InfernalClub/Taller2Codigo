@@ -2,13 +2,13 @@ package Contenedores;
 
 import Clases.Departamento;
 import Clases.Jefe;
+import Clases.Trabajadores;
 
 public class ListaDepartamento {
     /**
      * vector que contiene los departamentos
      */
     private final Departamento[] vector;
-    private Departamento departamento[];
     /**
      * cantidad de departamentos en el vector
      */
@@ -20,7 +20,7 @@ public class ListaDepartamento {
     /**
      * Jefe asignado al departamento
      */
-    private Jefe jefe;
+    private Trabajadores[] trabajador;
 
 
 
@@ -54,13 +54,7 @@ public class ListaDepartamento {
     public int getCantMax() {
         return cantMax;
     }
-    /**
-     * Devuelve el jefe asignado al departamento
-     * @return jefe asignado al departamento
-     */
-    public Jefe getJefe() {
-        return jefe;
-    }
+
 
     /**
      * Intenta agregar un departamento e incrementa el vector
@@ -103,7 +97,7 @@ public class ListaDepartamento {
                 return null;
             }
             for (int i = 0; i < cantActual; i++) {
-                if (vector[i].getBono()==bono) {
+                if (trabajador[i].getBono()==bono) {
                     return vector[i];
                 }
             }
@@ -112,11 +106,11 @@ public class ListaDepartamento {
     }
 
     public Departamento buscarDepartamentoSegunRangoEdad(String fecha){
-        if (fecha.equals(null)){
+        if (fecha.equalsIgnoreCase(null)){
             return null;
         }
         for (int i = 0; i <cantActual ; i++) {
-            if (jefe.getfechaNacimiento().equals(fecha)){
+            if (trabajador[i].getfechaNacimiento().equals(fecha)){
                 return vector[i];
             }
         }
@@ -128,7 +122,7 @@ public class ListaDepartamento {
         if(posicion < 0 || posicion >= this.cantActual){
             return null;
         }
-        return this.departamento[posicion];
+        return this.vector[posicion];
     }
 
 

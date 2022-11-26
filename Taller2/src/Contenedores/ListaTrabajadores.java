@@ -16,10 +16,7 @@ public class ListaTrabajadores {
      * tamanio del vector
      */
     private final int Max;
-    /**
-     * vector que contiene la posicion del trabajador
-     */
-    Trabajadores trabajador[];
+
     /**
      * Constructor de Trabajadores recibe el tamanio maximo
      *
@@ -60,7 +57,7 @@ public class ListaTrabajadores {
      * @return true en exito, false en caso de que el trabajador sea nulo o el vector está lleno
      */
     public boolean agregarTrabajadores(Trabajadores trabajador){
-        if (vector == null || cantActual == Max) {
+        if (trabajador== null || cantActual == Max) {
             return false;
         }
         vector[cantActual] = trabajador;
@@ -97,7 +94,7 @@ public class ListaTrabajadores {
         {
             return null;
         }
-        return this.trabajador[posicion];
+        return this.vector[posicion];
     }
 
 

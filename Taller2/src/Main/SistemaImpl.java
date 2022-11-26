@@ -223,7 +223,15 @@ public class SistemaImpl implements Sistema {
             switch (decision)
             {
                 case 1:
-                    TodosLosDepartamentos();
+                    StdOut.println("Ingrese el numero de departamento que desea ver:");
+                    int ndepa = StdIn.readInt();
+                    ndepa--;
+                    StdOut.println("*************************************************************************");
+                    StdOut.println(TodosLosDepartamentos(ndepa));
+                    StdOut.println("*************************************************************************");
+                    StdOut.println("Presione enter para continuar");
+                    StdIn.readString();
+                    menuDepartamentos();
                     break;
 
                 case 2:
@@ -336,29 +344,17 @@ public class SistemaImpl implements Sistema {
     /**
      * TodosLosDepartamentos ofrece la informacion de todos los departamentos
      */
-    public String[] TodosLosDepartamentos()
-    {
-        String[] listaDepas = new String[this.listaTrabajadores.getCantActual()];
-
-
-        for (int i = 0; i < listaDepartamento.getCantActual();i++)
-        {
-            Departamento departamento = listaDepartamento.obtenerDepartamento(i);
-
-
-
-
-            StdOut.println("Datos del departamento");
-            StdOut.println("===========================");
-            StdOut.println("Id: " + departamento.getID());
-            StdOut.println("Nombre: " + departamento.getNombre());
-            StdOut.println("Nombre y apellido del jefe: " + jefeActual.getNombre() + " " + jefeActual.getApellido());
-            StdOut.println("Rut del Clases.Jefe: " + jefeActual.getRut());
-            StdOut.println("Bono: " + departamento.getBono());
-            listaDepartamento.agregarDepartamento(departamento);
-        }
-        return listaDepas;
+    public String TodosLosDepartamentos(int i){
+        return "Departamento N° " + (i + 1) + ":\n" +
+                "ID: " + listaDepartamento.obtenerDepartamento(i).getID()+ " Nombre: " + listaDepartamento.obtenerDepartamento(i).getNombre()
+                + " Bono: " + listaDepartamento.obtenerDepartamento(i).getBono() +
+            " Nombre y apellido del jefe: " + listaTrabajadores.obtenerTrabajador(i).getNombre() + " " + listaTrabajadores.obtenerTrabajador(i).getApellido();
     }
+
+
+
+
+
 
     @Override
     /**
@@ -618,9 +614,14 @@ public class SistemaImpl implements Sistema {
      * Metodo que ordena a los empleados segun su departamento asignado
      */
     public void empleadosSegunDepartamento() {
-        TodosLosDepartamentos();
-        StdOut.println("¿Que departamento desea seleccionar");
+        StdOut.println("¿Que departamento desea seleccionar, escriba el nombre del departamento para continuar");
         String opcionDepa = StdIn.readString();
+
+        if (opcionDepa.equalsIgnoreCase(departamento.getNombre())){
+            StdOut.println("La cantidad de empleados en el departamento "+departamento.getNombre()+" es de "+listaTrabajadores.getCantActual());
+        }else {
+            StdOut.println("Error, ingrese correctamente la informacion requerida");
+        }
     }
 
     @Override
@@ -664,23 +665,18 @@ public class SistemaImpl implements Sistema {
      * Metodo que ordena a los empleados segun su Jefe asignado
      */
     public void empleadosSegunJefatura() {
+        int cantEmpleados=0;
         StdOut.println("Ingrese el rut del jefe designado");
         String rutJefe = StdIn.readString();
 
-        for (int i = 0; i <listaTrabajadores.getCantActual() ; i++) {
             if(rutJefe.equals(trabajadores.getRut())){
-                listaTrabajadores.buscarTrabajador(rutJefe);
-                StdOut.println("Los empleados asignados a un jefe son: "+listaTrabajadores.buscarTrabajador(rutJefe));
-                StdOut.println("Nombre: "+empleadoActual.getNombre());
-                StdOut.println("Apellido: "+empleadoActual.getApellido());
-                StdOut.println("Fecha de Nacimiento: "+empleadoActual.getfechaNacimiento());
-                StdOut.println("Fecha de Inicio: "+empleadoActual.getfechaInicio());
-                StdOut.println("Nombre del Jefe: "+jefeActual.getNombre());
-                StdOut.println("Apellido del Jefe: "+jefeActual.getApellido());
-                StdOut.println("Nombre del Departamento: "+departamento.getNombre());
-            }
-        }
+                for (int i = 0; i <listaTrabajadores.getCantActual() ; i++){
+                    cantEmpleados = listaTrabajadores.getCantActual();
+                }
 
+            }
+
+        StdOut.println("El jefe "+jefeActual.getNombre()+" posee una cantidad de "+cantEmpleados+" en el departamento "+departamento.getNombre());
     }
 
     @Override

@@ -28,7 +28,7 @@ public interface Sistema {
      *
      * @return
      */
-     String[] TodosLosDepartamentos();
+     String TodosLosDepartamentos(int i);
 
     /**
      * Metodo que ingresa a un empleado al sistema

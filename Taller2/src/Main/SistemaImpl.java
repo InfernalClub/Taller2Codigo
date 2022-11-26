@@ -8,6 +8,8 @@ import ucn.*;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -200,7 +202,6 @@ public class SistemaImpl implements Sistema {
     }
 
 
-
     @Override
     /**
      * Menu con diferentes opciones con referencia a los departamentos
@@ -378,20 +379,58 @@ public class SistemaImpl implements Sistema {
             return false;
         }
 
-        StdOut.println("Ingrese la fecha de nacimiento: ");
-        String nacimiento = StdIn.readLine();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Date date = sdf.parse(nacimiento);
-        Calendar fechaNacimiento = Calendar.getInstance();
-        fechaNacimiento.setTime(date);
+        StdOut.println("Ingrese el dia de la fecha de nacimiento: ");
+        int dia = StdIn.readInt();
+
+
+        StdOut.println("Ingrese el mes de nacimiento: ");
+        int mes = StdIn.readInt();
+
+
+        StdOut.println("Ingrese el año de nacimiento: ");
+        int anio = StdIn.readInt();
+        if (anio > 2022 || anio < 1950)
+        {
+            System.out.println("Ingrese un año valido: ");
+            return false;
+        }
+
+        if(!esfechaValida(dia, mes, anio))
+        {
+            System.out.println("La fecha no es valida");
+            return false;
+        }
+        String nacimiento = dia +"-"+ mes +"-"+ anio;
+
+
         StdOut.println("Ingrese el sueldo del empleado: ");
         int sueldo = Integer.parseInt(StdIn.readLine());
 
-        StdOut.println("Ingrese la fecha de inicio del empleado: ");
-        String fechaIni = StdIn.readString();
-        Date date2 = sdf.parse(fechaIni);
-        Calendar fechaInicio = Calendar.getInstance();
-        fechaNacimiento.setTime(date2);
+
+        StdOut.println("Ingrese el dia de que comezo a trabajar el empleado: ");
+        int dia1 = StdIn.readInt();
+
+
+        StdOut.println("Ingrese el mes de entrada al trabajo: ");
+        int mes1 = StdIn.readInt();
+
+
+        StdOut.println("Ingrese el año de que comezo a trabajar: ");
+        int anio1 = StdIn.readInt();
+        if (anio1 > 2022 || anio1 < 1950)
+        {
+            System.out.println("Ingrese un año valido: ");
+            return false;
+        };
+
+        if(!esfechaValida(dia1, mes1, anio1))
+        {
+            System.out.println("La fecha no es valida");
+            return false;
+        }
+        String fechaIni = dia1 +"-"+ mes1 +"-"+ anio1;
+
+
 
         StdOut.println("Ingrese el bono de productividad del empleado: ");
         int bono = StdIn.readInt();
@@ -404,9 +443,9 @@ public class SistemaImpl implements Sistema {
         StdOut.println("Con los siguientes datos:");
         StdOut.println("Rut: " + rut);
         StdOut.println("Nombre: " + nombre + " Apellido: " + apellido);
-        StdOut.println("Fecha de nacimiento: " + fechaNacimiento);
+        StdOut.println("Fecha de nacimiento: " + nacimiento);
         StdOut.println("Sueldo " + sueldo);
-        StdOut.println("Fecha de inicio: " + fechaInicio);
+        StdOut.println("Fecha de inicio: " + fechaIni);
         StdOut.println("Bono: " + bono);
 
         StdOut.println("Presione enter para continuar");
@@ -622,6 +661,21 @@ public class SistemaImpl implements Sistema {
 
 
     }
+
+    public static boolean esfechaValida(int day, int month, int year)
+    {
+        try
+        {
+            LocalDate.of(year, month, day);
+        }
+        catch (DateTimeException e)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
 
     /**
      *  Metod que pasa un dato de String a un dato double
@@ -851,9 +905,7 @@ public class SistemaImpl implements Sistema {
                 int salario = regEnt.getInt();
 
                 String fechaIngreso = regEnt.getString();
-                //Date date2 = sdf.parse(fecha2);
-                //Calendar fechaIngreso = Calendar.getInstance();
-                //fechaIngreso.setTime(date2);
+
 
                 int bonoProductividad = regEnt.getInt();
 

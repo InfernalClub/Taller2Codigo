@@ -20,16 +20,27 @@ public class SistemaImpl implements Sistema {
      * Lista de Departamentos
      */
     private static ListaDepartamento listaDepartamento;
-
+    /**
+     * Empleado actual
+     */
     private static Empleado empleadoActual;
-
+    /**
+     * Jefe Actual
+     */
     private static Jefe jefeActual;
-
+    /**
+     * Departamento actual
+     */
     private static Departamento departamento;
-
+    /**
+     * Trabajadores actuales
+     */
     private static Trabajadores trabajadores;
 
-
+    /**
+     *
+     * @param maximo indica la cantidad maxima de trabajadores y departamentos
+     */
     public SistemaImpl(int maximo) {
         listaTrabajadores = new ListaTrabajadores(maximo);
         listaDepartamento = new ListaDepartamento(maximo);
@@ -37,6 +48,9 @@ public class SistemaImpl implements Sistema {
 
 
     @Override
+    /**
+     * Metodo que verifica la lectura de datos e inicia el sistema
+     */
     public void Iniciar() throws Exception {
         if (!cargarDatos()) {
             StdOut.println("No se pudo iniciar el programa");
@@ -46,6 +60,9 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
+    /**
+     * Menu principal del programa
+     */
     public void menuPrincipal() {
         StdOut.println("***************************");
         StdOut.println("Menu Principal");
@@ -111,13 +128,16 @@ public class SistemaImpl implements Sistema {
     }
 
 
-
+    // Verificar si requiere cambio o borrarlo
     public void guardarDatos() throws IOException
     {
 
     }
 
     @Override
+    /**
+     * Menu con diferentes opciones de acuerdo a los empleados
+     */
     public void menuEmpleados() {
         StdOut.println("***************************");
         StdOut.println("Menu Empleados");
@@ -182,6 +202,9 @@ public class SistemaImpl implements Sistema {
 
 
     @Override
+    /**
+     * Menu con diferentes opciones con referencia a los departamentos
+     */
     public void menuDepartamentos() {
         StdOut.println("***************************");
         StdOut.println("Menu Departamentos");
@@ -231,6 +254,9 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
+    /**
+     * Menu que ofrece las estadisticas del programa
+     */
     public void Estadisticas() {
         StdOut.println("***************************");
         StdOut.println("Estadisticas");
@@ -293,6 +319,9 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
+    /**
+     * verEmpleados ofrece la informacion de los empleados actuales
+     */
     public void verEmpleados() {
         StdOut.println("Datos del empleado");
         StdOut.println("===========================");
@@ -306,6 +335,9 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
+    /**
+     * TodosLosDepartamentos ofrece la informacion de todos los departamentos
+     */
     public void TodosLosDepartamentos() {
         StdOut.println("Datos del departamento");
         StdOut.println("===========================");
@@ -317,6 +349,9 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
+    /**
+     * Opcion que permite ingresar a un empleado dentro del sistema
+     */
     public boolean IngresarEmpleado() throws ParseException {
         StdOut.println("Ingrese el nombre del empleado: ");
         String nombre = StdIn.readLine();
@@ -381,6 +416,9 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
+    /**
+     * Ingresardepartamento ofrece la opcion de ingresar un nuevo departamento al sistema
+     */
     public boolean IngresarDepartamento() {
 
         StdOut.println("Ingrese el nombre del departamento: ");
@@ -429,11 +467,17 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
+    /**
+     * departamentoSegunJefe es un metodo que permite saber que jefe fue asignado a un departamento en especifico
+     */
     public void departamentoSegunJefe() {
 
     }
 
     @Override
+    /**
+     * departamentoMasEmpleados ofrece informacion con respecto a que departamento posee la mayor cantidad de empleados
+     */
     public void departamentoMasEmpleados() {
 
         int contador = 0;
@@ -450,6 +494,9 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
+    /**
+     * departamentoMenosEmpleados ofrece la informacion de que departamento posee la menor cantidad de empleados
+     */
     public void departamentoMenosEmpleados() {
         int contador = 0;
         for (int i = 0; i < listaTrabajadores.getCantActual(); i++)
@@ -466,17 +513,26 @@ public class SistemaImpl implements Sistema {
 
 
     @Override
+    /**
+     * Metodo que ordena a los departamentos segun su rango de bonos
+     */
     public void departamentoSegunRangoDeBonos() {
 
     }
 
     @Override
+    /**
+     * Verifica en el sistema cual es el Jefe que posee la mayro cantidad de departamentos
+     */
     public void jefeMasDepartamentos() {
 
     }
 
 
     @Override
+    /**
+     * Metodo que ordena a los empleados segun su departamento asignado
+     */
     public void empleadosSegunDepartamento() {
         TodosLosDepartamentos();
         StdOut.println("¿Que departamento desea seleccionar");
@@ -484,6 +540,9 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
+    /**
+     * Metodo que ordena a los empleados segun rango de Inicio
+     */
     public void empleadosSegunRangoDeInicio() {
         StdOut.println("Ingrese cota inferior:");
         String cotaInferior = StdIn.readString();
@@ -493,12 +552,18 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
+    /**
+     * Metodo que ordena a los empleados segun su Jefe asignado
+     */
     public void empleadosSegunJefatura() {
         StdOut.println("Ingrese el rut del jefe designado");
         String rutJefe = StdIn.readString();
     }
 
     @Override
+    /**
+     * Metodo que ordena a los empleados segun su rango de sueldo
+     */
     public void empleadosSegunRangoDeSueldo() {
         StdOut.println("Ingrese un rango de sueldos inicial");
         String rango1 = StdIn.readString();
@@ -507,6 +572,9 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
+    /**
+     * Metodo que ordena a los empleados segun su rango de edad
+     */
     public void empleadosSegunRangoEdad() {
         StdOut.println("Ingrese un rango de edad inicial");
         String rango1 = StdIn.readString();
@@ -515,6 +583,9 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
+    /**
+     * Metodo que verifica en el sistema al empleado que posee el mayor sueldo
+     */
     public void empleadoMayorSueldo() {
         int mayorSueldo = -999999999;
         int contador = 0;
@@ -531,6 +602,9 @@ public class SistemaImpl implements Sistema {
     }
 
     @Override
+    /**
+     * Metodo que verifica en el sistema cual es el empleado que posee el menor sueldo
+     */
     public void empleadoMenorSueldo()
     {
         int menorSueldo = 999999999;
@@ -549,7 +623,11 @@ public class SistemaImpl implements Sistema {
 
     }
 
-
+    /**
+     *  Metod que pasa un dato de String a un dato double
+     * @param str String a verificar
+     * @return retorna falso si el numero ingresado esta mal ingresado y true si esta correctamente ingresado
+     */
     private boolean isNumeric(String str) {
         try {
             double d = Double.parseDouble(str);
@@ -559,6 +637,10 @@ public class SistemaImpl implements Sistema {
         return true;
     }
 
+    /**
+     * escribirArchivos permite la escritura de un archivo txt con la informacion pedida dentro del programa
+     * @throws IOException
+     */
     @Override
     public void escribirArchivos() throws IOException {
 
@@ -600,7 +682,11 @@ public class SistemaImpl implements Sistema {
         arch.close();
     }
 
-
+    /**
+     * Permite validar un rut ingresado por consola
+     * @param rut rut a verificar
+     * @return true si el rut tiene el formato correcto, false si no lo es
+     */
     @Override
     public boolean rutValido(String rut) {
         try {
@@ -675,6 +761,12 @@ public class SistemaImpl implements Sistema {
         }
         return true;
     }
+
+    /**
+     * rutFormateado es un metodo que corrige la escritura de un rut a un parametro determinado
+     * @param rut es el rut que es entregado por consola
+     * @return
+     */
     private String rutFormateado(String rut)
     {
         String rutFormateado = "";
@@ -689,7 +781,10 @@ public class SistemaImpl implements Sistema {
         return rutFormateado;
     }
 
-
+    /**
+     * randomID ofrece la creacion de un ID personalizado
+     * @return sieve para retornar la ID creada
+     */
     public String randomID()
         {
             String ID;
@@ -721,7 +816,12 @@ public class SistemaImpl implements Sistema {
         }
 
 
-
+    /**
+     * cargarDatos es un metodo que lee el archivo de texto y los guarda dentro del sistema
+     * @return sirve para verificar si se realizo la carga de los datos
+     * @throws IOException
+     * @throws ParseException
+     */
     public boolean cargarDatos() throws IOException, ParseException {
         ArchivoEntrada archivo = new ArchivoEntrada("Taller2/datos.txt");
         while(!archivo.isEndFile())
@@ -767,6 +867,9 @@ public class SistemaImpl implements Sistema {
         return true;
     }
     @Override
+    /**
+    * Salir es el metodo que cierra el programa
+    */
     public void Salir() {
         System.exit(6);
     }

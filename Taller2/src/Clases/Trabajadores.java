@@ -2,15 +2,49 @@ package Clases;
 
 import java.util.Calendar;
 
+/**
+ * Clase que representa a los Trabajadores
+ */
 public abstract class Trabajadores {
+    /**
+     * Nombre del trabajador
+     */
     String nombre;
+    /**
+     * Apellido del trabajador
+     */
     String apellido;
+    /**
+     * Rut del trabajador
+     */
     String rut;
+    /**
+     * Fecha de nacimiento del trabajador
+     */
     String fechaNacimiento;
+    /**
+     * Sueldo del trabajador
+     */
     int sueldo;
+    /**
+     * Fecha de inicio del trabajador
+     */
     String fechaInicio;
+    /**
+     * Bono del trabajador
+     */
     int bono;
 
+    /**
+     * Constructor de trabajador
+     * @param nombre nombre del trabajador
+     * @param apellido apellido del trabajador
+     * @param rut rut del trabajador
+     * @param fechaNacimiento fecha de nacimiento del trabajador
+     * @param sueldo sueldo del trabajador
+     * @param fechaInicio fecha de inicio del trabajador
+     * @param bono bono del trabajador
+     */
     public Trabajadores(String nombre, String apellido, String rut, String fechaNacimiento, int sueldo, String fechaInicio, int bono) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -21,6 +55,9 @@ public abstract class Trabajadores {
         this.bono = bono;
     }
 
+    /**
+     * Getters y Setters
+     */
     public String getNombre() {
         return nombre;
     }

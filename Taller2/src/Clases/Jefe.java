@@ -4,11 +4,34 @@ import Clases.Departamento;
 
 import java.util.Calendar;
 
+/**
+ *  Clase que reperesenta al jefe
+ */
 public class Jefe extends Trabajadores {
+    /**
+     * Departamento asiganado al jefe
+     */
     Departamento departamento;
+    /**
+     * cantida de departamentos que posee un jefe
+     */
     int cant_Departamentos;
+    /**
+     * Departamento que se le asigno a un jefe
+     */
     String DepartamentoAsignado;
 
+    /**
+     * Constructor de Jefe
+     * @param nombre nombre del jefe
+     * @param apellido apellido del jefe
+     * @param rut rut del jefe
+     * @param edad edad del jefe
+     * @param sueldo sueldo del jefe
+     * @param fechaIngreso fecha de ingreso del jefe
+     * @param bono bono del jefe
+     * @param cant_Departamentos cantidad de departamentos del jefe
+     */
     public Jefe(String nombre, String apellido, String rut, String edad, int sueldo, String fechaIngreso,int bono, int cant_Departamentos)
     {
         super(nombre, apellido, rut, edad, sueldo, fechaIngreso, bono);
@@ -16,6 +39,9 @@ public class Jefe extends Trabajadores {
 
     }
 
+    /**
+     * Getters y Setters
+     */
 
     public Departamento getDepartamento() {
         return departamento;

@@ -947,8 +947,10 @@ public class SistemaImpl implements Sistema {
             arch.writeRegistro(regDepartamentos);
 
 
-            for (int i = 0; i < cantidadEmpleados;i++)
-            {
+            for (Trabajadores t :listaTrabajadores.getTrabajadores()){
+                if (t == null) {
+                    break;
+                }
 
                 regTrabajadores = new Registro(7);
 
@@ -961,8 +963,8 @@ public class SistemaImpl implements Sistema {
                 regTrabajadores.agregarCampo(t.getBono());
 
                 arch.writeRegistro(regTrabajadores);
-
             }
+            
             arch.close();
         }
     }

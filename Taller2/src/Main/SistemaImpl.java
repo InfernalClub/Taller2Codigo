@@ -444,10 +444,12 @@ public class SistemaImpl implements Sistema {
         StdOut.println("Ingrese el bono de productividad del empleado: ");
         int bono = StdIn.readInt();
 
-
-        String rutJefe = listaDepartamento.obtenerDepartamento(randomizerDepartamento()).getRutJefe();
+        int randomDepa = randomizerDepartamento();
+        String rutJefe = listaDepartamento.obtenerDepartamento(randomDepa).getRutJefe();
         Empleado empleado = new Empleado(nombre, apellido, rut, nacimiento, sueldo, fechaIni, bono, rutJefe);
         listaTrabajadores.agregarTrabajadores(empleado);
+        int actual = listaDepartamento.obtenerDepartamento(randomDepa).getCant_Empleados() + 1;
+        listaDepartamento.obtenerDepartamento(randomDepa).setCant_Empleados(actual);
 
         StdOut.println("Trabajador registrado con éxito");
         StdOut.println("Con los siguientes datos:");
@@ -760,34 +762,44 @@ public class SistemaImpl implements Sistema {
      * Metodo que ordena a los empleados segun su Jefe asignado
      */
     public void empleadosSegunJefatura() {
+
         StdOut.println("Ingrese rut del jefe: ");
         String rut = StdIn.readString();
 
-        if (rut == null) {
+        if (rut == null)
+        {
             StdOut.println("Jefe no encontrado");
             menuEmpleados();
 
         }
-        if (!rutValido(rut)) {
-            for (int i = 0; i <listaTrabajadores.getCantActual() ; i++) {
+        if (rutValido(rut))
+        {
+            for (int i = 0; i < listaDepartamento.getCantActual(); i++)
+            {
+                Departamento departamento1 = listaDepartamento.obtenerDepartamento(i);
+                for (int k = 0; k < listaTrabajadores.getCantActual(); k++)
+                {
+                    Trabajadores trabajadores1 = listaTrabajadores.obtenerTrabajador(k);
+                    if (departamento1.getRutJefe().equals(trabajadores1.getRut()))
+                    {
+                        StdOut.println("Nombre: " + listaTrabajadores.obtenerTrabajador(k).getNombre());
+                        StdOut.println("");
+                        StdOut.println("Apellido: " + listaTrabajadores.obtenerTrabajador(k).getApellido());
+                        StdOut.println("");
+                        StdOut.println("Fecha de Nacimiento: " + listaTrabajadores.obtenerTrabajador(k).getfechaNacimiento());
+                        StdOut.println("");
+                        StdOut.println("Fecha de Inicio: " + listaTrabajadores.obtenerTrabajador(k).getfechaInicio());
+                        StdOut.println("");
+                        StdOut.println("Nombre del Departamento: " + listaDepartamento.obtenerDepartamento(i).getNombre());
+                        StdOut.println("");
+                    }
 
-                if (rut.equals(listaDepartamento.obtenerDepartamento(i).getRutJefe())){
-                    StdOut.println("Nombre: "+listaTrabajadores.obtenerTrabajador(i).getNombre());
-                    StdOut.println("");
-                    StdOut.println("Apellido: "+listaTrabajadores.obtenerTrabajador(i).getApellido());
-                    StdOut.println("");
-                    StdOut.println("Fecha de Nacimiento: "+listaTrabajadores.obtenerTrabajador(i).getfechaNacimiento());
-                    StdOut.println("");
-                    StdOut.println("Fecha de Inicio: "+listaTrabajadores.obtenerTrabajador(i).getfechaInicio());
-                    StdOut.println("");
-                    StdOut.println("Nombre del Departamento: "+listaDepartamento.obtenerDepartamento(i).getNombre());
-                    StdOut.println("");
                 }
-
             }
 
-
-        }else {
+        }
+        else
+        {
             StdOut.println("Error, intente de nuevo");
         }
         StdOut.println("Presione enter para continuar");
@@ -994,47 +1006,44 @@ public class SistemaImpl implements Sistema {
     public void escribirArchivos() throws IOException {
 
         ArchivoSalida arch = new ArchivoSalida("Taller2/datos.txt");
-
+        int  i;
+        int counter = 0;
         Registro regDepartamentos;
-        Registro regTrabajadores;
+        Registro regTrabajadores = null;
 
-        for (Departamento d : listaDepartamento.getVector()) {
-            if (d == null) {
-                break;
-            }
+        for (i = 0; i < listaDepartamento.getCantActual(); i++)
+        {
             regDepartamentos = new Registro(5);
 
-            regDepartamentos.agregarCampo(d.getID());
-            regDepartamentos.agregarCampo(d.getNombre());
-            regDepartamentos.agregarCampo(d.getBono());
-            regDepartamentos.agregarCampo(d.getRutJefe());
-            regDepartamentos.agregarCampo(d.getCant_Empleados());
-            int cantidadEmpleados = d.getCant_Empleados();
+            regDepartamentos.agregarCampo(listaDepartamento.obtenerDepartamento(i).getID());
+            regDepartamentos.agregarCampo(listaDepartamento.obtenerDepartamento(i).getNombre());
+            regDepartamentos.agregarCampo(listaDepartamento.obtenerDepartamento(i).getBono());
+            regDepartamentos.agregarCampo(listaDepartamento.obtenerDepartamento(i).getRutJefe());
+            regDepartamentos.agregarCampo(listaDepartamento.obtenerDepartamento(i).getCant_Empleados());
+            int cantidadEmpleados = listaDepartamento.obtenerDepartamento(i).getCant_Empleados();
 
             arch.writeRegistro(regDepartamentos);
 
 
-            for (Trabajadores t :listaTrabajadores.getTrabajadores()){
-                if (t == null) {
-                    break;
-                }
+            for (int k = 0; k < cantidadEmpleados; k++){
 
                 regTrabajadores = new Registro(7);
 
 
-                regTrabajadores.agregarCampo(t.getNombre());
-                regTrabajadores.agregarCampo(t.getApellido());
-                regTrabajadores.agregarCampo(t.getRut());
-                regTrabajadores.agregarCampo(String.valueOf(t.getfechaNacimiento()));
-                regTrabajadores.agregarCampo(t.getSueldo());
-                regTrabajadores.agregarCampo(String.valueOf(t.getfechaInicio()));
-                regTrabajadores.agregarCampo(t.getBono());
-
+                regTrabajadores.agregarCampo(listaTrabajadores.obtenerTrabajador(counter).getNombre());
+                regTrabajadores.agregarCampo(listaTrabajadores.obtenerTrabajador(counter).getApellido());
+                regTrabajadores.agregarCampo(listaTrabajadores.obtenerTrabajador(counter).getRut());
+                regTrabajadores.agregarCampo(listaTrabajadores.obtenerTrabajador(counter).getfechaNacimiento());
+                regTrabajadores.agregarCampo(listaTrabajadores.obtenerTrabajador(counter).getSueldo());
+                regTrabajadores.agregarCampo(listaTrabajadores.obtenerTrabajador(counter).getfechaInicio());
+                regTrabajadores.agregarCampo(listaTrabajadores.obtenerTrabajador(counter).getBono());
+                counter++;
                 arch.writeRegistro(regTrabajadores);
             }
             
-            arch.close();
+
         }
+        arch.close();
     }
 
     /**

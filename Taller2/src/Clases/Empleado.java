@@ -31,6 +31,7 @@ public class Empleado extends Trabajadores {
         public Empleado(String nombre, String apellido, String rut, String fechaNacimiento, int sueldo, String fechaInicio, int bono, String rutJefe) {
                 super(nombre, apellido, rut, fechaNacimiento, sueldo, fechaInicio, bono);
 
+
         }
 
     /**
@@ -43,4 +44,5 @@ public class Empleado extends Trabajadores {
         public void setJefeDepartamento(Jefe jefeDepartamento) {
                 this.jefeDepartamento = jefeDepartamento;
         }
+
 }

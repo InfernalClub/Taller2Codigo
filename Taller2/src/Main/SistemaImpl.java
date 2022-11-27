@@ -821,9 +821,11 @@ public class SistemaImpl implements Sistema {
     {
         Random r = new Random();
         int bajo = 0;
-        int alto = listaDepartamento.getCantActual();
+        int alto = listaDepartamento.getCantActual() + 1;
         int result = r.nextInt(alto-bajo);
-
+        int manoObra =  listaDepartamento.obtenerDepartamento(result).getCant_Empleados();
+        manoObra = manoObra + 1;
+        listaDepartamento.obtenerDepartamento(result).setCant_Empleados(manoObra);
         return result;
     }
 

@@ -22,7 +22,6 @@ public interface Sistema {
      */
      void menuDepartamentos();
 
-     void verEmpleados();
     /**
      * Metodo que muestra todos los departamentos
      *

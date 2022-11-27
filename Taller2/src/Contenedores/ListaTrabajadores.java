@@ -104,16 +104,17 @@ public class ListaTrabajadores {
 
     /**
      * Devuelve al jefe en la posicion dada
-     * @param posicion del jefe a obtener
+     * @param rut del jefe a obtener
      * @return posicion del jefe dado
      */
-    public Jefe obtenerJefe(int posicion)
+    public Jefe obtenerJefe(String rut)
     {
-        if (posicion < 0 || posicion >= this.getCantActual())
-        {
-            return null;
+        for (int i = 0; i < cantActual; i++) {
+            if (vector[i].getRut().equals(rut)) {
+                return jefe[i];
+            }
         }
-        return this.jefe[posicion];
+        return null;
     }
 
 

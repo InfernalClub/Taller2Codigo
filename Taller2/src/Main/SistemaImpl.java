@@ -935,6 +935,7 @@ public class SistemaImpl implements Sistema {
 
         Registro regDepartamentos;
         Registro regTrabajadores;
+        int contador = 0;
 
         for (Departamento d : listaDepartamento.getVector())
         {
@@ -958,7 +959,7 @@ public class SistemaImpl implements Sistema {
             if (t == null) {
                 break;
             }
-            reg = new Registro(7);
+            regTrabajadores = new Registro(7);
 
             regTrabajadores.agregarCampo(t.getNombre());
             regTrabajadores.agregarCampo(t.getApellido());

@@ -936,10 +936,8 @@ public class SistemaImpl implements Sistema {
         Registro regDepartamentos;
         Registro regTrabajadores;
 
-        for (Departamento d : listaDepartamento.getVector())
-        {
-            if (d == null)
-            {
+        for (Departamento d : listaDepartamento.getVector()) {
+            if (d == null) {
                 break;
             }
             regDepartamentos = new Registro(5);
@@ -949,29 +947,29 @@ public class SistemaImpl implements Sistema {
             regDepartamentos.agregarCampo(d.getBono());
             regDepartamentos.agregarCampo(d.getRutJefe());
             regDepartamentos.agregarCampo(d.getCant_Empleados());
+            int cantidadEmpleados = d.getCant_Empleados();
+
+            arch.writeRegistro(regDepartamentos);
 
 
+            for (int i = 0; i < cantidadEmpleados;i++)
+            {
 
-        }
+                regTrabajadores = new Registro(7);
 
-        for (Trabajadores t : listaTrabajadores.getTrabajadores()){
-            if (t == null) {
-                break;
+                regTrabajadores.agregarCampo(t.getNombre());
+                regTrabajadores.agregarCampo(t.getApellido());
+                regTrabajadores.agregarCampo(t.getRut());
+                regTrabajadores.agregarCampo(String.valueOf(t.getfechaNacimiento()));
+                regTrabajadores.agregarCampo(t.getSueldo());
+                regTrabajadores.agregarCampo(String.valueOf(t.getfechaInicio()));
+                regTrabajadores.agregarCampo(t.getBono());
+
+                arch.writeRegistro(regTrabajadores);
+
             }
-            reg = new Registro(7);
-
-            regTrabajadores.agregarCampo(t.getNombre());
-            regTrabajadores.agregarCampo(t.getApellido());
-            regTrabajadores.agregarCampo(t.getRut());
-            regTrabajadores.agregarCampo(String.valueOf(t.getfechaNacimiento()));
-            regTrabajadores.agregarCampo(t.getSueldo());
-            regTrabajadores.agregarCampo(String.valueOf(t.getfechaInicio()));
-            regTrabajadores.agregarCampo(t.getBono());
-
-            arch.writeRegistro(regTrabajadores);
-            contador++;
+            arch.close();
         }
-        arch.close();
     }
 
     /**

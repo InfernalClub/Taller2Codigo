@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.Random;
 
 public class SistemaImpl implements Sistema {
@@ -803,7 +804,7 @@ public class SistemaImpl implements Sistema {
     {
         String peorPagado = null;
         int menorSueldo = 999999999;
-        int contador = 0;
+
         for (int i = 0; i < listaTrabajadores.getCantActual(); i++)
         {
             Trabajadores trabajador = listaTrabajadores.obtenerTrabajador(i);
@@ -878,20 +879,25 @@ public class SistemaImpl implements Sistema {
     public void escribirArchivos() throws IOException {
 
         ArchivoSalida arch = new ArchivoSalida("Taller2/datos.txt");
-        int contador = 0;
-        Registro reg;
 
-        for (Departamento d : listaDepartamento.getVector()) {
-            if (d == null) {
+        Registro regDepartamentos;
+        Registro regTrabajadores;
+
+        for (Departamento d : listaDepartamento.getVector())
+        {
+            if (d == null)
+            {
                 break;
             }
-            reg = new Registro(5);
+            regDepartamentos = new Registro(5);
 
-            reg.agregarCampo(d.getID());
-            reg.agregarCampo(d.getNombre());
-            reg.agregarCampo(d.getBono());
-            reg.agregarCampo(d.getRutJefe());
-            reg.agregarCampo(d.getCant_Empleados());
+            regDepartamentos.agregarCampo(d.getID());
+            regDepartamentos.agregarCampo(d.getNombre());
+            regDepartamentos.agregarCampo(d.getBono());
+            regDepartamentos.agregarCampo(d.getRutJefe());
+            regDepartamentos.agregarCampo(d.getCant_Empleados());
+
+
 
         }
 
@@ -901,15 +907,15 @@ public class SistemaImpl implements Sistema {
             }
             reg = new Registro(7);
 
-            reg.agregarCampo(t.getNombre());
-            reg.agregarCampo(t.getApellido());
-            reg.agregarCampo(t.getRut());
-            reg.agregarCampo(String.valueOf(t.getfechaNacimiento()));
-            reg.agregarCampo(t.getSueldo());
-            reg.agregarCampo(String.valueOf(t.getfechaInicio()));
-            reg.agregarCampo(t.getBono());
+            regTrabajadores.agregarCampo(t.getNombre());
+            regTrabajadores.agregarCampo(t.getApellido());
+            regTrabajadores.agregarCampo(t.getRut());
+            regTrabajadores.agregarCampo(String.valueOf(t.getfechaNacimiento()));
+            regTrabajadores.agregarCampo(t.getSueldo());
+            regTrabajadores.agregarCampo(String.valueOf(t.getfechaInicio()));
+            regTrabajadores.agregarCampo(t.getBono());
 
-            arch.writeRegistro(reg);
+            arch.writeRegistro(regTrabajadores);
             contador++;
         }
         arch.close();

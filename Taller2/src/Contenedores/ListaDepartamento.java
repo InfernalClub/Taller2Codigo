@@ -72,50 +72,10 @@ public class ListaDepartamento {
     }
 
     /**
-     * Intenta buscar un departamento de acuerdo a su jefe asignado
-     * @param nombre a buscar
-     * @return true en exito, false en caso de que el nombre sea nulo o el vector este lleno
+     *  Intenta obtener la posicion del departamento en la lista
+     * @param posicion a obtener
+     * @return true si se encuentra, false si es que no
      */
-    public Departamento buscarDepartamentoSegunJefe(String nombre) {
-        if (nombre == null) {
-            return null;
-        }
-        for (int i = 0; i < cantActual; i++) {
-            if (vector[i].getNombre().equalsIgnoreCase(nombre)) {
-                return vector[i];//
-            }
-        }
-        return null;
-    }
-    /**
-     * Intenta buscar un departamento de acuerdo a su rango de bono
-     * @param bono a buscar
-     * @return true en exito, false en caso de que el bono sea nulo o el vector este lleno
-     */
-    public Departamento buscarDepartamentoSegunRangoBono(int bono) {
-            if (bono==0) {
-                return null;
-            }
-            for (int i = 0; i < cantActual; i++) {
-                if (trabajador[i].getBono()==bono) {
-                    return vector[i];
-                }
-            }
-            return null;
-
-    }
-
-    public Departamento buscarDepartamentoSegunRangoEdad(String fecha){
-        if (fecha.equalsIgnoreCase(null)){
-            return null;
-        }
-        for (int i = 0; i <cantActual ; i++) {
-            if (trabajador[i].getfechaNacimiento().equals(fecha)){
-                return vector[i];
-            }
-        }
-        return null;
-    }
 
     public Departamento obtenerDepartamento(int posicion)
     {

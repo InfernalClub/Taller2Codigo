@@ -543,9 +543,11 @@ public class SistemaImpl implements Sistema {
             }
         }else {
             StdOut.println("Error, intente de nuevo");
-            menuDepartamentos();
-        }
 
+        }
+        StdOut.println("Presione enter para continuar");
+        StdIn.readLine();
+        menuDepartamentos();
     }
 
     @Override
@@ -569,6 +571,8 @@ public class SistemaImpl implements Sistema {
 
         }
         StdOut.println("El departamento "+departamentoMasEmpleados+" posee una cantidad de "+masEmpleados+" empleados");
+        StdOut.println("Presione enter para continuar");
+        StdIn.readLine();
         Estadisticas();
     }
 
@@ -592,6 +596,8 @@ public class SistemaImpl implements Sistema {
 
         }
         StdOut.println("El departamento "+departamentoMenosEmpleados+" posee una cantidad de "+menosEmpleados+" empleados");
+        StdOut.println("Presione enter para continuar");
+        StdIn.readLine();
         Estadisticas();
     }
 
@@ -624,7 +630,9 @@ public class SistemaImpl implements Sistema {
                 StdOut.println("");
             }
         }
-        menuEmpleados();
+        StdOut.println("Presione enter para continuar");
+        StdIn.readLine();
+        menuDepartamentos();
 
     }
 
@@ -688,7 +696,9 @@ public class SistemaImpl implements Sistema {
                 StdOut.println("La cantidad de empleados en el departamento " + listaDepartamento.obtenerDepartamento(i).getNombre() + " es de " + listaDepartamento.obtenerDepartamento(i).getCant_Empleados());
             }
         }
-
+        StdOut.println("Presione enter para continuar");
+        StdIn.readLine();
+        menuEmpleados();
     }
 
     @Override
@@ -710,6 +720,9 @@ public class SistemaImpl implements Sistema {
         int anio2 = StdIn.readInt();
 
         if(esfechaValida(dia1,mes1,anio1) && esfechaValida(dia2,mes2,anio2)){
+            String nombreJefe="";
+            String apellidoJefe="";
+            String nombreDepa = "";
             StdOut.println("Los empleados segun su rango de inicio son: ");
             for (int i = 0; i <listaTrabajadores.getCantActual() ; i++) {
                 StdOut.println("Nombre: "+listaTrabajadores.obtenerTrabajador(i).getNombre());
@@ -720,19 +733,26 @@ public class SistemaImpl implements Sistema {
                 StdOut.println("");
                 StdOut.println("Fecha de Inicio: "+listaTrabajadores.obtenerTrabajador(i).getfechaInicio());
                 StdOut.println("");
-                StdOut.println("Nombre del Jefe: "+listaTrabajadores.obtenerTrabajador(i).getNombre());
+                if (listaTrabajadores.obtenerTrabajador(i).getRut().equalsIgnoreCase(listaDepartamento.obtenerDepartamento(i).getRutJefe())){
+                    nombreJefe = listaTrabajadores.obtenerTrabajador(i).getNombre();
+                    apellidoJefe = listaTrabajadores.obtenerTrabajador(i).getApellido();
+                    nombreDepa = listaDepartamento.obtenerDepartamento(i).getNombre();
+                }
+                StdOut.println("Nombre del Jefe: "+nombreJefe);
                 StdOut.println("");
-                StdOut.println("Apellido del Jefe: "+listaTrabajadores.obtenerTrabajador(i).getApellido());
+                StdOut.println("Apellido del Jefe: "+apellidoJefe);
                 StdOut.println("");
-                StdOut.println("Nombre del Departamento: "+listaDepartamento.obtenerDepartamento(i).getNombre());
+                StdOut.println("Nombre del Departamento: "+nombreDepa);
                 StdOut.println("");
             }
         }
         else {
             StdOut.println("Ingrese los parametros correctos");
-            menuEmpleados();
-        }
 
+        }
+        StdOut.println("Presione enter para continuar");
+        StdIn.readLine();
+        menuEmpleados();
     }
 
     @Override
@@ -750,26 +770,29 @@ public class SistemaImpl implements Sistema {
         }
         if (!rutValido(rut)) {
             for (int i = 0; i <listaTrabajadores.getCantActual() ; i++) {
-                StdOut.println("Nombre: "+listaTrabajadores.obtenerTrabajador(i).getNombre());
-                StdOut.println("");
-                StdOut.println("Apellido: "+listaTrabajadores.obtenerTrabajador(i).getApellido());
-                StdOut.println("");
-                StdOut.println("Fecha de Nacimiento: "+listaTrabajadores.obtenerTrabajador(i).getfechaNacimiento());
-                StdOut.println("");
-                StdOut.println("Fecha de Inicio: "+listaTrabajadores.obtenerTrabajador(i).getfechaInicio());
-                StdOut.println("");
-                StdOut.println("Nombre del Jefe: "+listaTrabajadores.obtenerTrabajador(i).getNombre());
-                StdOut.println("");
-                StdOut.println("Apellido del Jefe: "+listaTrabajadores.obtenerTrabajador(i).getApellido());
-                StdOut.println("");
-                StdOut.println("Nombre del Departamento: "+listaDepartamento.obtenerDepartamento(i).getNombre());
-                StdOut.println("");
+
+                if (rut.equals(listaDepartamento.obtenerDepartamento(i).getRutJefe())){
+                    StdOut.println("Nombre: "+listaTrabajadores.obtenerTrabajador(i).getNombre());
+                    StdOut.println("");
+                    StdOut.println("Apellido: "+listaTrabajadores.obtenerTrabajador(i).getApellido());
+                    StdOut.println("");
+                    StdOut.println("Fecha de Nacimiento: "+listaTrabajadores.obtenerTrabajador(i).getfechaNacimiento());
+                    StdOut.println("");
+                    StdOut.println("Fecha de Inicio: "+listaTrabajadores.obtenerTrabajador(i).getfechaInicio());
+                    StdOut.println("");
+                    StdOut.println("Nombre del Departamento: "+listaDepartamento.obtenerDepartamento(i).getNombre());
+                    StdOut.println("");
+                }
+
             }
 
 
         }else {
             StdOut.println("Error, intente de nuevo");
         }
+        StdOut.println("Presione enter para continuar");
+        StdIn.readLine();
+        menuEmpleados();
 
     }
 
@@ -784,10 +807,10 @@ public class SistemaImpl implements Sistema {
         StdOut.println("Ingrese el rango de sueldo final");
         int rango2 = StdIn.readInt();
 
-        if (rango1>rango2){
+            if (rango1>rango2){
             StdOut.println("Error, el rango inicial deber ser menor al final");
             menuEmpleados();
-        }
+             }
 
                 for (int i = 0; i < listaTrabajadores.getCantActual(); i++) {
                     if (rango1 <= listaTrabajadores.obtenerTrabajador(i).getSueldo() && rango2 >= listaTrabajadores.obtenerTrabajador(i).getSueldo()) {
@@ -805,9 +828,12 @@ public class SistemaImpl implements Sistema {
                         StdOut.println("");
                         StdOut.println("Nombre del Departamento: "+listaDepartamento.obtenerDepartamento(i).getNombre());
                         StdOut.println("");
+                    }
+
                 }
-            }
-            menuEmpleados();
+        StdOut.println("Presione enter para continuar");
+        StdIn.readLine();
+        menuEmpleados();
 
 
     }
@@ -852,7 +878,9 @@ public class SistemaImpl implements Sistema {
             StdOut.println("Ingrese los parametros correctos");
             menuEmpleados();
         }
-
+        StdOut.println("Presione enter para continuar");
+        StdIn.readLine();
+        menuEmpleados();
     }
 
     @Override
@@ -876,6 +904,8 @@ public class SistemaImpl implements Sistema {
 
         }
         StdOut.println("El mayor sueldo es de "+mayorSueldo+ " con un sueldo de: "+ millonario);
+        StdOut.println("Presione enter para continuar");
+        StdIn.readLine();
         Estadisticas();
     }
 
@@ -900,6 +930,9 @@ public class SistemaImpl implements Sistema {
 
         }
         StdOut.println("El menor sueldo es de "+menorSueldo+ " de nombre: "+ peorPagado);
+        StdOut.println("");
+        StdOut.println("Presione enter para continuar");
+        StdIn.readLine();
         Estadisticas();
     }
 
@@ -1141,7 +1174,7 @@ public class SistemaImpl implements Sistema {
             int bonoDepa = regEnt.getInt();
             String rutjefe = regEnt.getString();
             int cantEmpleados = regEnt.getInt();
-            Clases.Departamento departamento = new Clases.Departamento(ID,nombredepa,bonoDepa,rutjefe,cantEmpleados);
+            Departamento departamento = new Departamento(ID,nombredepa,bonoDepa,rutjefe,cantEmpleados);
             listaDepartamento.agregarDepartamento(departamento);
 
             for (int i = 1; i <= cantEmpleados; i++)

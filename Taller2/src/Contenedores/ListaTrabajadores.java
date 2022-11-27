@@ -18,7 +18,7 @@ public class ListaTrabajadores {
      */
     private final int Max;
 
-    private Jefe[] jefe;
+
 
 
 
@@ -101,23 +101,6 @@ public class ListaTrabajadores {
         }
         return this.vector[posicion];
     }
-
-    /**
-     * Devuelve al jefe en la posicion dada
-     * @param rut del jefe a obtener
-     * @return posicion del jefe dado
-     */
-    public Jefe obtenerJefe(String rut)
-    {
-        for (int i = 0; i < cantActual; i++) {
-            if (vector[i].getRut().equals(rut)) {
-                return jefe[i];
-            }
-        }
-        return null;
-    }
-
-
 
 
 }

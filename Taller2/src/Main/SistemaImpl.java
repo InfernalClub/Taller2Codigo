@@ -903,7 +903,6 @@ public class SistemaImpl implements Sistema {
     {
         String millonario = null;
         int mayorSueldo = -999999999;
-        int contador = 0;
         for (int i = 0; i < listaTrabajadores.getCantActual(); i++)
         {
             Trabajadores trabajador = listaTrabajadores.obtenerTrabajador(i);

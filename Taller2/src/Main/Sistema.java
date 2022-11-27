@@ -46,66 +46,61 @@ public interface Sistema {
     /**
      * Departamento que posee la mayor cantidad de empleados
      */
-    public void departamentoMasEmpleados();
+     void departamentoMasEmpleados();
     /**
      * Departamento que posee la menor cantidad de empleados
      */
-    public void departamentoMenosEmpleados();
+     void departamentoMenosEmpleados();
     /**
      * Orden de departamentos segun su rango de bonos
      */
-    public void departamentoSegunRangoDeBonos();
+    void departamentoSegunRangoDeBonos();
     /**
      * Jefe con la mayor cantidad de departamentos asignados
      */
-    public void jefeMasDepartamentos();
-
+    void jefeMasDepartamentos();
     /**
      * Orden de empleados segun su departamento
      */
-    public void empleadosSegunDepartamento();
+    void empleadosSegunDepartamento();
     /**
      * Orden de empleados segun su rango de inicio
      */
-    public void empleadosSegunRangoDeInicio();
+     void empleadosSegunRangoDeInicio();
     /**
      * Orden de empleados segun su jefe asignado
      */
-    public void empleadosSegunJefatura();
+    void empleadosSegunJefatura();
     /**
      * Orden de empleados segun su sueldo
      */
-    public void empleadosSegunRangoDeSueldo();
+    void empleadosSegunRangoDeSueldo();
     /**
      * Orden de empleados segun su rango de edad
      */
-    public void empleadosSegunRangoEdad();
+    void empleadosSegunRangoEdad();
     /**
      * Empleado que posee el mayor sueldo
      */
-    public void empleadoMayorSueldo();
+     void empleadoMayorSueldo();
     /**
      * Empleado que posee el menor sueldo
      */
-    public void empleadoMenorSueldo();
-
-    String verEmpleados(int i);
+    void empleadoMenorSueldo();
 
     /**
      * Menu de estadisticas del sistema
      */
-    public void Estadisticas();
-
+    void Estadisticas();
     /**
      * Metodo que escribe los archivos en un archivo txt
      * @throws IOException si no se puede cargar los datos
      */
-    public void escribirArchivos() throws IOException;
+    void escribirArchivos() throws IOException;
     /**
      * Verifica si el rut ingresado es valido
      */
     boolean rutValido(String rut);
-
     /**
      * Metodo que carga los archivos a partir de un documento txt
      * @return retorna verdadero si realizo la carga y falso si no
@@ -116,6 +111,6 @@ public interface Sistema {
     /**
      * Metodo que cierra el sistema
      */
-    public void Salir();
+    void Salir();
 
 }

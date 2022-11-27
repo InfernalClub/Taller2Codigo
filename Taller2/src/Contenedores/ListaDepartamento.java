@@ -116,7 +116,9 @@ public class ListaDepartamento {
         }
         return null;
     }
-
+    /**
+        Metodo para poder acceder a la cada departamento por medio de su posicion actual en la lista.
+     */
     public Departamento obtenerDepartamento(int posicion)
     {
         if(posicion < 0 || posicion >= this.cantActual){

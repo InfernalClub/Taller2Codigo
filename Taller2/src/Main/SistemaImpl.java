@@ -903,6 +903,10 @@ public class SistemaImpl implements Sistema {
         Estadisticas();
     }
 
+    /**
+        Metodo implementado para asignar al azar al nuevo trabajador a un departamento asociandolo al rut de su nuevo jefe
+        de manera aleatoria segun los departamentos disponibles.
+     */
     public int randomizerDepartamento()
     {
         Random r = new Random();
@@ -911,6 +915,15 @@ public class SistemaImpl implements Sistema {
         int result = r.nextInt(alto-bajo);
         return result;
     }
+
+
+    /**
+     *  Metodo para verificar si la fecha agregada al sistema cumple con el formato local
+     * @param day dia asignado, no puede superar el valor 31
+     * @param month mes asignado, no puede superar el valor 12
+     * @param year año asignado.
+     * @return verdadero de cumplit condicion, falso de lo contrario.
+     */
     public static boolean esfechaValida(int day, int month, int year)
     {
         try

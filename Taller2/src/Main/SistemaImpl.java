@@ -340,10 +340,19 @@ public class SistemaImpl implements Sistema {
      * TodosLosDepartamentos ofrece la informacion de todos los departamentos
      */
     public String TodosLosDepartamentos(int i){
+
+        int k;
+        String nombreJefe = null;
+        String apellidoJefe = null;
+        for (k = 0; k <= listaTrabajadores.getCantActual(); k++)
+        if (listaDepartamento.obtenerDepartamento(i).getRutJefe() == listaTrabajadores.obtenerTrabajador(k).getRut()){
+            nombreJefe = listaTrabajadores.obtenerTrabajador(k).getNombre();
+            apellidoJefe = listaTrabajadores.obtenerTrabajador(k).getApellido();
+        }
         return "Departamento N° " + (i + 1) + ":\n" +
                 "ID: " + listaDepartamento.obtenerDepartamento(i).getID()+ " Nombre: " + listaDepartamento.obtenerDepartamento(i).getNombre()
                 + " Bono: " + listaDepartamento.obtenerDepartamento(i).getBono() +
-            " Nombre y apellido del jefe: " + listaTrabajadores.obtenerTrabajador(i).getNombre() + " " + listaTrabajadores.obtenerTrabajador(i).getApellido();
+            " Nombre y apellido del jefe: " + nombreJefe + " " + apellidoJefe;
     }
 
 
@@ -473,10 +482,7 @@ public class SistemaImpl implements Sistema {
         StdOut.println("Ingrese el rut del jefe asignado");
         String rutJefe = StdIn.readString();
         for (int i = 0; i <listaTrabajadores.getCantActual() ; i++) {
-            if (listaTrabajadores.obtenerTrabajador(i).getRut().equals(rutJefe)) {
-                StdOut.println("El rut ingresado ya se encuentra registrado");
-                return false;
-            }
+
             if (rutJefe.contains(".") || rutJefe.contains("-")) {
                 rutJefe = rutJefe.replace(".", "");
                 rutJefe = rutJefe.replace("-", "");
@@ -632,9 +638,11 @@ public class SistemaImpl implements Sistema {
         int contador = 0;
         String rutJefeTemp="";
         String nombreJefeTemp="";
-        for (int i = 0; i < listaDepartamento.getCantActual(); i++) {
+        for (int i = 0; i < listaDepartamento.getCantActual(); i++)
+        {
             rutJefeTemp.equals(listaDepartamento.obtenerDepartamento(i).getRutJefe());
-                if (listaDepartamento.getCantActual()<= listaDepartamento.getCantMax()) {
+
+                if (listaDepartamento.obtenerDepartamento(i).getRutJefe() == rutJefeTemp) {
                     contador++;
 
             }
@@ -953,6 +961,7 @@ public class SistemaImpl implements Sistema {
                 }
 
                 regTrabajadores = new Registro(7);
+
 
                 regTrabajadores.agregarCampo(t.getNombre());
                 regTrabajadores.agregarCampo(t.getApellido());

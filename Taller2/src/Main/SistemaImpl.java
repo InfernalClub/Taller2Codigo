@@ -112,7 +112,7 @@ public class SistemaImpl implements Sistema {
                     break;
 
                 case 6:
-                    guardarDatos();
+                    escribirArchivos();
                     StdOut.println("Se cierra el programa");
                     StdOut.println("Gracias por utilizar nuestros servicios");
                     Salir();
@@ -129,11 +129,6 @@ public class SistemaImpl implements Sistema {
     }
 
 
-    // Verificar si requiere cambio o borrarlo
-    public void guardarDatos() throws IOException
-    {
-
-    }
 
     @Override
     /**

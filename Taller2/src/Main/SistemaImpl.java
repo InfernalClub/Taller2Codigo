@@ -708,8 +708,10 @@ public class SistemaImpl implements Sistema {
         StdOut.println("Ingrese el rango de sueldo final");
         int rango2 = StdIn.readInt();
 
-            for (int i = 0; i <listaTrabajadores.getCantActual() ; i++) {
-                if (trabajadores.getSueldo()>=rango1 && trabajadores.getSueldo()<=rango2){
+            for (int i = 0; i <listaTrabajadores.getCantActual() ; i++)
+            {
+                if (trabajadores.getSueldo()>=rango1 && trabajadores.getSueldo()<=rango2)
+                {
                     StdOut.println("Los empleados segun su rango de sueldo son: ");
                     StdOut.println("Nombre: "+empleadoActual.getNombre());
                     StdOut.println("Apellido: "+empleadoActual.getApellido());
@@ -811,15 +813,27 @@ public class SistemaImpl implements Sistema {
         StdOut.println("El menor sueldo es de "+menorSueldo+ " de nombre: "+ peorPagado);
         Estadisticas();
     }
-
+    /**
+        randomizerDepartamento recupera un valor al azar entre 0 (incluido y la cantidad total de departamentos (no incluido)
+        para asignar al trabajador al su jefe de departamento, ademas aumenta en uno la cantidad de trabajadores de dicho departamento.
+     */
     public int randomizerDepartamento()
     {
         Random r = new Random();
         int bajo = 0;
         int alto = listaDepartamento.getCantActual();
         int result = r.nextInt(alto-bajo);
+
         return result;
     }
+
+    /**
+     *  Determina si los valores ingresados pueden ser procesados como fechas.
+     * @param day toma el valor de dia registrado en el sistema.
+     * @param month toma el valor de mes dentro del sistema, no permite valores mayores de 12 o decimales.
+     * @param year toma el valor de año registrado en sistema, tiene como limite el año 1950 y el superior de 2022.
+     * @return devuelve falso o verdadero segun se hayan cumplido las condiciones anteriores.
+     */
     public static boolean esfechaValida(int day, int month, int year)
     {
         try

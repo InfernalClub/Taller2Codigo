@@ -22,7 +22,7 @@ public interface Sistema {
      */
      void menuDepartamentos();
 
-     String verEmpleados(int i);
+     void verEmpleados();
     /**
      * Metodo que muestra todos los departamentos
      *
@@ -89,6 +89,9 @@ public interface Sistema {
      * Empleado que posee el menor sueldo
      */
     public void empleadoMenorSueldo();
+
+    String verEmpleados(int i);
+
     /**
      * Menu de estadisticas del sistema
      */

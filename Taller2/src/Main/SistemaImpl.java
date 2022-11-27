@@ -342,12 +342,14 @@ public class SistemaImpl implements Sistema {
     public String TodosLosDepartamentos(int i){
 
         int k;
-        String nombreJefe = null;
-        String apellidoJefe = null;
-        for (k = 0; k <= listaTrabajadores.getCantActual(); k++)
-        if (listaDepartamento.obtenerDepartamento(i).getRutJefe() == listaTrabajadores.obtenerTrabajador(k).getRut()){
-            nombreJefe = listaTrabajadores.obtenerTrabajador(k).getNombre();
-            apellidoJefe = listaTrabajadores.obtenerTrabajador(k).getApellido();
+        String nombreJefe = "";
+        String apellidoJefe = "";
+        for (k = 0; k < listaTrabajadores.getCantActual(); k++)
+        {
+            if (listaDepartamento.obtenerDepartamento(i).getRutJefe().equals(listaTrabajadores.obtenerTrabajador(k).getRut())) {
+                nombreJefe = listaTrabajadores.obtenerTrabajador(k).getNombre();
+                apellidoJefe = listaTrabajadores.obtenerTrabajador(k).getApellido();
+            }
         }
         return "Departamento N° " + (i + 1) + ":\n" +
                 "ID: " + listaDepartamento.obtenerDepartamento(i).getID()+ " Nombre: " + listaDepartamento.obtenerDepartamento(i).getNombre()
@@ -633,33 +635,44 @@ public class SistemaImpl implements Sistema {
     /**
      * Verifica en el sistema cual es el Jefe que posee la mayor cantidad de departamentos
      */
-    public void jefeMasDepartamentos() {
+    public void jefeMasDepartamentos()
+    {
+        int k;
         int mayor = 0;
         int contador = 0;
-        String rutJefeTemp="";
-        String nombreJefeTemp="";
+        String rutJefeTemp = "";
+        String nombreJefeTemp = "";
+
         for (int i = 0; i < listaDepartamento.getCantActual(); i++)
         {
-            rutJefeTemp.equals(listaDepartamento.obtenerDepartamento(i).getRutJefe());
+            Departamento departamento1 = listaDepartamento.obtenerDepartamento(i);
+            contador = 0;
 
-                if (listaDepartamento.obtenerDepartamento(i).getRutJefe() == rutJefeTemp) {
-                    contador++;
+            for (k = 0; k < listaTrabajadores.getCantActual(); k++)
+            {
+                Trabajadores trabajadores1 = listaTrabajadores.obtenerTrabajador(k);
+                if(departamento1.getRutJefe().equals(trabajadores1.getRut()))
+                {
+
+                contador++;
+                if (contador > mayor)
+                    {
+                        mayor = contador;
+                        nombreJefeTemp = trabajadores1.getNombre();
+
+                    }
+
+                }
+
 
             }
-            if (contador > mayor) {
-                mayor = contador;
-
-            }
-            if (rutJefeTemp.equals(listaDepartamento.obtenerDepartamento(i).getRutJefe())){
-                nombreJefeTemp = listaTrabajadores.obtenerTrabajador(i).getNombre();
-            }
-
 
         }
 
         StdOut.println("El jefe con más departamentos es: " + nombreJefeTemp+ " con una cantidad de " + mayor+" departamentos");
         StdOut.println("Presione enter para continuar");
         StdIn.readLine();
+        Estadisticas();
     }
 
 

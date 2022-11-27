@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.Random;
 
 public class SistemaImpl implements Sistema {
     /**
@@ -443,7 +444,8 @@ public class SistemaImpl implements Sistema {
         int bono = StdIn.readInt();
 
 
-        Empleado empleado = new Empleado(nombre, apellido, rut, nacimiento, sueldo, fechaIni, bono, null);
+        String rutJefe = listaDepartamento.obtenerDepartamento(randomizerDepartamento()).getRutJefe();
+        Empleado empleado = new Empleado(nombre, apellido, rut, nacimiento, sueldo, fechaIni, bono, rutJefe);
         listaTrabajadores.agregarTrabajadores(empleado);
 
         StdOut.println("Trabajador registrado con éxito");
@@ -454,6 +456,7 @@ public class SistemaImpl implements Sistema {
         StdOut.println("Sueldo " + sueldo);
         StdOut.println("Fecha de inicio: " + fechaIni);
         StdOut.println("Bono: " + bono);
+        StdOut.println("Asignado al Jefe de rut: "+ rutJefe);
 
         StdOut.println("Presione enter para continuar");
         StdIn.readLine();
@@ -585,17 +588,20 @@ public class SistemaImpl implements Sistema {
 
         if (bono1 < bono2)
         {
-            for (int i = 0; i <=listaDepartamento.obtenerDepartamento(i).getBono() ; i++)
+            StdOut.println("Los departamentos disponibles segun el rango son: ");
+
+            for (int i = 0; i <= listaDepartamento.getCantActual() ; i++)
             {
-                listaDepartamento.buscarDepartamentoSegunRangoBono(i);
-                StdOut.println("Los departamentos disponibles segun el rango son: ");
+                if (listaDepartamento.obtenerDepartamento(i).getBono() >= bono1 && listaDepartamento.obtenerDepartamento(i).getBono() <= bono2) {
+                    System.out.println(listaDepartamento.obtenerDepartamento(i).getNombre() + " con un bono de: " + listaDepartamento.obtenerDepartamento(i).getBono());
+                }
             }
         }
         else
         {
             StdOut.println("La primera cota debe ser inferior a la segunda");
         }
-
+        menuDepartamentos();
     }
 
     @Override
@@ -718,7 +724,7 @@ public class SistemaImpl implements Sistema {
                     menuEmpleados();
                 }
             }
-
+        menuEmpleados();
     }
 
 
@@ -779,6 +785,7 @@ public class SistemaImpl implements Sistema {
 
         }
         StdOut.println("El mayor sueldo es de "+mayorSueldo+ " con un sueldo de: "+ millonario);
+        Estadisticas();
     }
 
     @Override
@@ -802,9 +809,17 @@ public class SistemaImpl implements Sistema {
 
         }
         StdOut.println("El menor sueldo es de "+menorSueldo+ " de nombre: "+ peorPagado);
-
+        Estadisticas();
     }
 
+    public int randomizerDepartamento()
+    {
+        Random r = new Random();
+        int bajo = 0;
+        int alto = listaDepartamento.getCantActual();
+        int result = r.nextInt(alto-bajo);
+        return result;
+    }
     public static boolean esfechaValida(int day, int month, int year)
     {
         try

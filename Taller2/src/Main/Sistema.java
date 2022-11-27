@@ -22,7 +22,7 @@ public interface Sistema {
      */
      void menuDepartamentos();
 
-     void verEmpleados();
+     String verEmpleados(int i);
     /**
      * Metodo que muestra todos los departamentos
      *

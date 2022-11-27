@@ -1,5 +1,6 @@
 package Contenedores;
 
+import Clases.Jefe;
 import Clases.Trabajadores;
 
 public class ListaTrabajadores {
@@ -16,6 +17,10 @@ public class ListaTrabajadores {
      * tamanio del vector
      */
     private final int Max;
+
+    private Jefe[] jefe;
+
+
 
     /**
      * Constructor de Trabajadores recibe el tamanio maximo
@@ -86,7 +91,7 @@ public class ListaTrabajadores {
     /**
      * Devuelve el trabajador en la posicion dada
      * @param posicion del trabajador a obtener
-     * @return posiscion del trabajador dado
+     * @return posicion del trabajador dado
      */
     public Trabajadores obtenerTrabajador(int posicion)
     {
@@ -95,6 +100,20 @@ public class ListaTrabajadores {
             return null;
         }
         return this.vector[posicion];
+    }
+
+    /**
+     * Devuelve al jefe en la posicion dada
+     * @param posicion del jefe a obtener
+     * @return posicion del jefe dado
+     */
+    public Jefe obtenerJefe(int posicion)
+    {
+        if (posicion < 0 || posicion >= this.getCantActual())
+        {
+            return null;
+        }
+        return this.jefe[posicion];
     }
 
 
